@@ -20,7 +20,6 @@
     body {
       position: relative;
       min-height: 100vh;
-      /* Parallax background with moonben.png */
       background: url('moonben.png') center center / cover no-repeat fixed;
       animation: bgmove 20s linear infinite alternate;
     }
@@ -81,7 +80,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-end;
+      justify-content: center;
       min-width: 180px;
       z-index: 2;
     }
@@ -122,6 +121,7 @@
       margin-bottom: 18px;
       transition: box-shadow 0.2s;
       backdrop-filter: blur(2px);
+      overflow: hidden;
     }
     .tap-ben:active {
       box-shadow: 0 2px 8px 0 #ffb300;
@@ -129,9 +129,12 @@
     .tap-ben img {
       width: 180px;
       height: 180px;
-      object-fit: contain;
+      object-fit: cover;
       user-select: none;
       pointer-events: none;
+      border-radius: 50%; /* Ball effect */
+      box-shadow: 0 0 32px 0 #fff7c0cc;
+      background: rgba(255,255,255,0.12);
     }
     .woof {
       position: absolute;
@@ -171,19 +174,33 @@
       60% { opacity: 1; transform: translate(-50%, -120%) scale(1.2);}
       100% { opacity: 0; transform: translate(-50%, -220%) scale(0.7);}
     }
+    .ca-section {
+      margin: 10px 0 0 0;
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 2px 8px #ffb300;
+      background: rgba(0,0,0,0.18);
+      border-radius: 12px;
+      padding: 8px 18px;
+      display: inline-block;
+      letter-spacing: 1px;
+      font-family: monospace;
+      user-select: all;
+    }
     .about-section {
       margin: 40px auto 0 auto;
       max-width: 900px;
-      background: rgba(255,255,255,0.13);
+      background: rgba(255,255,255,0.18);
       border-radius: 24px;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
       padding: 32px 24px;
       text-align: center;
-      color: #3d2c00;
+      color: #fff;
       font-size: 1.25rem;
       line-height: 1.7;
       position: relative;
       z-index: 2;
+      text-shadow: 0 2px 8px #ffb300;
     }
     .about-section img.logo {
       width: 120px;
@@ -213,10 +230,6 @@
       width: 100%;
       height: auto;
     }
-    .center-content .tap-ben {
-      background: rgba(255,255,255,0.18);
-      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
-    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .ben-side { flex-direction: row; justify-content: center; }
@@ -230,6 +243,7 @@
       .about-section { font-size: 1rem; padding: 18px 6px; }
       .about-section img.team { max-width: 180px; }
       .bottom-banner img { max-width: 220px; }
+      .ca-section { font-size: 0.9rem; padding: 6px 8px;}
     }
   </style>
 </head>
@@ -246,13 +260,18 @@
     <a href="https://x.com/Bendog_CTO" target="_blank" title="X (Twitter)">
       <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
     </a>
+    <a href="https://coinmarketcap.com/currencies/ben-the-dog/" target="_blank" title="CoinMarketCap">
+      <img src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg" alt="CoinMarketCap" style="background:#2a2a2a;border-radius:50%;padding:4px;">
+    </a>
+    <a href="https://www.mexc.com/pt-PT/exchange/BENDOG_USDT" target="_blank" title="MEXC">
+      <img src="https://assets.staticimg.com/mexc-logo-square.png" alt="MEXC" style="background:#fff;border-radius:50%;padding:4px;">
+    </a>
   </div>
   <!-- Main Content -->
   <div class="main-content">
     <!-- Left Ben: Sunglasses -->
     <div class="ben-side left">
       <img src="ben-sunglasses.png" alt="Ben the Dog Cool" style="animation-duration:2.5s;">
-      <img src="ben-cool.png" alt="Ben the Dog Glasses" style="margin-top:24px;animation-duration:2.8s;">
     </div>
     <!-- Center Interactive Ben -->
     <div class="center-content">
@@ -263,11 +282,13 @@
       <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px #ffb300;">
         Tap Ben for a WOOF!
       </div>
+      <div class="ca-section">
+        CA: AHW5N8iqZobTcBepkSJzZ61XtAuSzBDcpxtrLG6KUKPk
+      </div>
     </div>
     <!-- Right Ben: Waving -->
     <div class="ben-side right">
       <img src="ben-wave.png" alt="Ben the Dog Waving" style="animation-duration:3.2s;">
-      <img src="ben-game.png" alt="Ben the Dog Game" style="margin-top:24px;animation-duration:3.5s;">
     </div>
   </div>
   <!-- About Section -->
