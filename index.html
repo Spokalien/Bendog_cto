@@ -5,7 +5,7 @@
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="logo-coin.png" sizes="32x32">
   <!-- Google Fonts for modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
@@ -14,19 +14,19 @@
       margin: 0;
       padding: 0;
       font-family: 'Montserrat', Arial, sans-serif;
-      background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
       min-height: 100vh;
       overflow-x: hidden;
     }
     body {
       position: relative;
       min-height: 100vh;
-      background: radial-gradient(circle at 50% 30%, #fff7c0 0%, #f9d423 40%, #ff4e50 100%);
-      animation: bgmove 10s infinite alternate;
+      /* Parallax background with moonben.png */
+      background: url('moonben.png') center center / cover no-repeat fixed;
+      animation: bgmove 20s linear infinite alternate;
     }
     @keyframes bgmove {
-      0% { background-position: 50% 30%; }
-      100% { background-position: 60% 40%; }
+      0% { background-position: 50% 100%; }
+      100% { background-position: 50% 0%; }
     }
     .banner {
       display: flex;
@@ -121,6 +121,7 @@
       position: relative;
       margin-bottom: 18px;
       transition: box-shadow 0.2s;
+      backdrop-filter: blur(2px);
     }
     .tap-ben:active {
       box-shadow: 0 2px 8px 0 #ffb300;
@@ -184,10 +185,21 @@
       position: relative;
       z-index: 2;
     }
-    .about-section img {
+    .about-section img.logo {
       width: 120px;
       margin: 0 12px 0 0;
       vertical-align: middle;
+      float: left;
+    }
+    .about-section img.team {
+      display: block;
+      margin: 32px auto 0 auto;
+      max-width: 320px;
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px 0 #ffb30044;
+      background: #fff;
+      padding: 8px;
     }
     .bottom-banner {
       display: flex;
@@ -201,6 +213,10 @@
       width: 100%;
       height: auto;
     }
+    .center-content .tap-ben {
+      background: rgba(255,255,255,0.18);
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .ben-side { flex-direction: row; justify-content: center; }
@@ -212,6 +228,7 @@
       .tap-ben { width: 140px; height: 140px; }
       .tap-ben img { width: 110px; height: 110px; }
       .about-section { font-size: 1rem; padding: 18px 6px; }
+      .about-section img.team { max-width: 180px; }
       .bottom-banner img { max-width: 220px; }
     }
   </style>
@@ -241,10 +258,10 @@
     <div class="center-content">
       <div class="tap-ben" id="tapBen">
         <span class="woof" id="woofText">WOOF!</span>
-        <img src="ben-phone.png" alt="Tap Ben the Dog" id="benImage">
+        <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
       </div>
       <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px #ffb300;">
-        Tap Ben for a WOOF and collect coins!
+        Tap Ben for a WOOF!
       </div>
     </div>
     <!-- Right Ben: Waving -->
@@ -255,11 +272,12 @@
   </div>
   <!-- About Section -->
   <div class="about-section">
-    <img src="smalllogo-coin.png" alt="BENDOG Coin" style="float:left;">
+    <img src="logo-coin.png" alt="BENDOG Coin" class="logo">
     <strong>Welcome to Bendog Crypto!</strong><br>
     The most fun and community-driven meme coin on the blockchain. Tap Ben, collect coins, and join our growing community. <br>
     <br>
     <span style="color:#ff4e50;font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement! Join us on Telegram and X, and let’s take Ben to the moon together!
+    <img src="teamben.png" alt="BENDOG Team" class="team">
   </div>
   <!-- Bottom Banner -->
   <div class="bottom-banner">
