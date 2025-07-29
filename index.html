@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon for browser tab/search -->
   <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
-  <!-- Google Fonts for modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
     html, body {
@@ -134,7 +132,7 @@
       object-fit: cover;
       user-select: none;
       pointer-events: none;
-      border-radius: 50%; /* Ball effect */
+      border-radius: 50%;
       box-shadow: 0 0 32px 0 #fff7c0cc;
       background: rgba(255,255,255,0.12);
     }
@@ -221,9 +219,40 @@
       margin: 0 0 10px 0;
       display: inline-block;
     }
+    .about-section .main-welcome {
+      margin-bottom: 30px;
+    }
+    .about-section .sub-info {
+      margin: 30px 0 0 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .about-section .sub-info-text {
+      font-size: 1.1rem;
+      color: #fff;
+      text-shadow: 0 2px 8px #ffb300;
+      background: rgba(0,0,0,0.18);
+      border-radius: 18px;
+      padding: 18px 12px;
+      font-weight: 500;
+      line-height: 1.6;
+      max-width: 420px;
+      margin-bottom: 0;
+    }
+    .about-section .sub-info-img {
+      max-width: 180px;
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px 0 #ffb30044;
+      background: #fff;
+      padding: 8px;
+      object-fit: contain;
+    }
     .about-section img.team {
       display: block;
-      margin: 32px auto 0 auto;
+      margin: 40px auto 0 auto;
       width: 100%;
       max-width: 100%;
       height: auto;
@@ -245,53 +274,13 @@
       width: 100%;
       height: auto;
     }
-    /* New: Left text and right image block */
-    .info-row {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 32px;
-      margin: 40px auto 0 auto;
-      max-width: 900px;
-      z-index: 2;
-      position: relative;
-    }
-    .info-text {
-      flex: 1.2;
-      color: #fff;
-      font-size: 1.2rem;
-      text-shadow: 0 2px 8px #ffb300;
-      background: rgba(0,0,0,0.18);
-      border-radius: 18px;
-      padding: 24px 18px;
-      font-weight: 500;
-      line-height: 1.6;
-      min-width: 220px;
-      max-width: 420px;
-    }
-    .info-image {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .info-image img {
-      max-width: 220px;
-      width: 100%;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px 0 #ffb30044;
-      background: #fff;
-      padding: 8px;
-      object-fit: contain;
-    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .ben-side { flex-direction: row; justify-content: center; }
       .ben-side img { width: 120px; }
       .center-content { margin: 24px 0; }
       .about-section { max-width: 98vw; }
-      .info-row { flex-direction: column; gap: 18px; }
-      .info-image img { max-width: 160px; }
+      .about-section .sub-info-img { max-width: 120px; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -303,7 +292,7 @@
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
       .about-section strong { font-size: 1.2rem; }
       .about-section .bendog { font-size: 1.3rem; }
-      .info-text { font-size: 1rem; padding: 12px 6px;}
+      .about-section .sub-info-text { font-size: 0.95rem; padding: 10px 4px;}
     }
   </style>
 </head>
@@ -331,16 +320,6 @@
       <img src="mexc-logo.png" alt="MEXC">
     </a>
   </div>
-  <!-- Info Row (left text, right image) -->
-  <div class="info-row">
-    <div class="info-text">
-      The most fun and community-driven meme coin on the blockchain.<br>
-      Tap Ben, collect coins, and join our growing community.
-    </div>
-    <div class="info-image">
-      <img src="joinben.png" alt="Join Ben">
-    </div>
-  </div>
   <!-- Main Content -->
   <div class="main-content">
     <!-- Left Ben: Sunglasses -->
@@ -367,12 +346,19 @@
   </div>
   <!-- About Section -->
   <div class="about-section">
-    <strong>Welcome to Bendog Crypto!</strong>
-    <span class="bendog">$BENDOG</span>
-    <div>
-      Tap Ben The Dog and Join our Growing Community.<br><br>
-      <span style="font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement!<br>
-      Join us on Telegram and X, and let’s take Ben to the moon together!
+    <div class="main-welcome">
+      <strong>Welcome to Bendog Crypto!</strong>
+      <div class="bendog">$BENDOG</div>
+      <div>
+        Tap Ben The Dog and Join our Growing Community.
+      </div>
+    </div>
+    <div class="sub-info">
+      <div class="sub-info-text">
+        The most fun and community-driven meme coin on the blockchain.<br>
+        Tap Ben, collect coins, and join our growing community.
+      </div>
+      <img src="joinben.png" alt="Join Ben" class="sub-info-img">
     </div>
     <img src="teamben.png" alt="BENDOG Team" class="team">
   </div>
