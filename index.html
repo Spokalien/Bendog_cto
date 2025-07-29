@@ -4,9 +4,10 @@
   <meta charset="UTF-8">
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
   <!-- Google Fonts for modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="logo-coin.png">
   <style>
     html, body {
       height: 100%;
@@ -188,34 +189,30 @@
       margin: 0 12px 0 0;
       vertical-align: middle;
     }
-    .showcase {
+    .bottom-banner {
       display: flex;
-      justify-content: center;
       align-items: center;
-      gap: 32px;
-      margin: 40px 0 0 0;
-      flex-wrap: wrap;
+      justify-content: center;
+      margin: 60px 0 30px 0;
+      width: 100%;
     }
-    .showcase img {
-      width: 180px;
-      max-width: 90vw;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px 0 #ffb30044;
-      background: #fff;
-      padding: 8px;
+    .bottom-banner img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
     }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .ben-side { flex-direction: row; justify-content: center; }
       .ben-side img { width: 120px; }
       .center-content { margin: 24px 0; }
-      .showcase img { width: 120px; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
       .tap-ben { width: 140px; height: 140px; }
       .tap-ben img { width: 110px; height: 110px; }
       .about-section { font-size: 1rem; padding: 18px 6px; }
+      .bottom-banner img { max-width: 220px; }
     }
   </style>
 </head>
@@ -235,10 +232,10 @@
   </div>
   <!-- Main Content -->
   <div class="main-content">
-    <!-- Left Ben -->
+    <!-- Left Ben: Sunglasses -->
     <div class="ben-side left">
       <img src="ben-sunglasses.png" alt="Ben the Dog Cool" style="animation-duration:2.5s;">
-      <img src="ben-wave.png" alt="Ben the Dog Waving" style="margin-top:24px;animation-duration:3.2s;">
+      <img src="ben-cool.png" alt="Ben the Dog Glasses" style="margin-top:24px;animation-duration:2.8s;">
     </div>
     <!-- Center Interactive Ben -->
     <div class="center-content">
@@ -250,29 +247,26 @@
         Tap Ben for a WOOF and collect coins!
       </div>
     </div>
-    <!-- Right Ben -->
+    <!-- Right Ben: Waving -->
     <div class="ben-side right">
-      <img src="ben-cool.png" alt="Ben the Dog Glasses" style="animation-duration:2.8s;">
+      <img src="ben-wave.png" alt="Ben the Dog Waving" style="animation-duration:3.2s;">
       <img src="ben-game.png" alt="Ben the Dog Game" style="margin-top:24px;animation-duration:3.5s;">
     </div>
   </div>
   <!-- About Section -->
   <div class="about-section">
-    <img src="logo-coin.png" alt="BENDOG Coin" style="float:left;">
+    <img src="smalllogo-coin.png" alt="BENDOG Coin" style="float:left;">
     <strong>Welcome to Bendog Crypto!</strong><br>
     The most fun and community-driven meme coin on the blockchain. Tap Ben, collect coins, and join our growing community. <br>
     <br>
     <span style="color:#ff4e50;font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement! Join us on Telegram and X, and let’s take Ben to the moon together!
   </div>
-  <!-- Showcase Section -->
-  <div class="showcase">
-    <img src="ben-wave.png" alt="Ben the Dog Waving">
-    <img src="ben-cool.png" alt="Ben the Dog Cool">
-    <img src="ben-sunglasses.png" alt="Ben the Dog Sunglasses">
-    <img src="ben-game.png" alt="Ben the Dog Game">
+  <!-- Bottom Banner -->
+  <div class="bottom-banner">
+    <img src="banner.png" alt="BENDOG Logo Banner">
   </div>
   <!-- Floating Coin Template (hidden) -->
-  <img src="logo-coin.png" id="coinTemplate" style="display:none;">
+  <img src="smalllogo-coin.png" id="coinTemplate" style="display:none;">
   <!-- Sound -->
   <audio id="woofSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae5e2.mp3"></audio>
   <script>
