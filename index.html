@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="logo-coin.png" sizes="32x32">
+  <!-- Favicon for browser tab/search -->
+  <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
   <!-- Google Fonts for modern look -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
@@ -57,14 +57,16 @@
       align-items: center;
       justify-content: center;
       transition: transform 0.2s;
+      overflow: hidden;
     }
     .socials a:hover {
       transform: scale(1.15) rotate(-8deg);
       background: #ffe082;
     }
-    .socials img {
+    .socials img, .socials svg {
       width: 28px;
       height: 28px;
+      display: block;
     }
     .main-content {
       display: flex;
@@ -201,12 +203,29 @@
       position: relative;
       z-index: 2;
       text-shadow: 0 2px 8px #ffb300;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
-    .about-section img.logo {
-      width: 120px;
-      margin: 0 12px 0 0;
-      vertical-align: middle;
-      float: left;
+    .about-section strong {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .about-section .bendog {
+      color: #ffd700;
+      background: linear-gradient(90deg, #ffb300 0%, #ff4e50 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: 900;
+      font-size: 2.1rem;
+      letter-spacing: 2px;
+      text-shadow: 0 2px 8px #ffb300, 0 0 2px #000;
+      margin: 0 0 10px 0;
+      display: inline-block;
     }
     .about-section img.team {
       display: block;
@@ -244,6 +263,8 @@
       .about-section img.team { max-width: 180px; }
       .bottom-banner img { max-width: 220px; }
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
+      .about-section strong { font-size: 1.2rem; }
+      .about-section .bendog { font-size: 1.3rem; }
     }
   </style>
 </head>
@@ -254,17 +275,21 @@
   </div>
   <!-- Socials -->
   <div class="socials">
+    <!-- Telegram SVG -->
     <a href="https://t.co/f6CENdLLHY" target="_blank" title="Telegram">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="filter: invert(0.7) sepia(1) hue-rotate(170deg) saturate(3);">
+      <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
     </a>
+    <!-- X (Twitter) SVG -->
     <a href="https://x.com/Bendog_CTO" target="_blank" title="X (Twitter)">
-      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
+      <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
     </a>
+    <!-- CoinMarketCap SVG -->
     <a href="https://coinmarketcap.com/currencies/ben-the-dog/" target="_blank" title="CoinMarketCap">
-      <img src="https://s2.coinmarketcap.com/static/cloud/img/coinmarketcap_white_1.svg" alt="CoinMarketCap" style="background:#2a2a2a;border-radius:50%;padding:4px;">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#262A3B"/><path d="M23.5 20.5c-1.5 1.5-3.5 2.5-5.5 2.5-4 0-7-3-7-7s3-7 7-7c2 0 4 1 5.5 2.5" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M23.5 11.5v9" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
     </a>
+    <!-- MEXC SVG -->
     <a href="https://www.mexc.com/pt-PT/exchange/BENDOG_USDT" target="_blank" title="MEXC">
-      <img src="https://assets.staticimg.com/mexc-logo-square.png" alt="MEXC" style="background:#fff;border-radius:50%;padding:4px;">
+      <svg viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="16" fill="#1ED760"/><path d="M16 8l7 12.124c.5.866-.124 1.876-1.124 1.876H10.124c-1 0-1.624-1.01-1.124-1.876L16 8z" fill="#fff"/></svg>
     </a>
   </div>
   <!-- Main Content -->
@@ -293,11 +318,14 @@
   </div>
   <!-- About Section -->
   <div class="about-section">
-    <img src="logo-coin.png" alt="BENDOG Coin" class="logo">
-    <strong>Welcome to Bendog Crypto!</strong><br>
-    The most fun and community-driven meme coin on the blockchain. Tap Ben, collect coins, and join our growing community. <br>
-    <br>
-    <span style="color:#ff4e50;font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement! Join us on Telegram and X, and let’s take Ben to the moon together!
+    <strong>Welcome to Bendog Crypto!</strong>
+    <span class="bendog">$BENDOG</span>
+    <div>
+      The most fun and community-driven meme coin on the blockchain.<br>
+      Tap Ben, collect coins, and join our growing community.<br><br>
+      <span style="font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement!<br>
+      Join us on Telegram and X, and let’s take Ben to the moon together!
+    </div>
     <img src="teamben.png" alt="BENDOG Team" class="team">
   </div>
   <!-- Bottom Banner -->
