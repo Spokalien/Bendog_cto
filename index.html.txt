@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BENDOG Crypto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts for modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="logo-coin.png">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 30%, #fff7c0 0%, #f9d423 40%, #ff4e50 100%);
+      animation: bgmove 10s infinite alternate;
+    }
+    @keyframes bgmove {
+      0% { background-position: 50% 30%; }
+      100% { background-position: 60% 40%; }
+    }
+    .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 0 20px 0;
+      background: rgba(255,255,255,0.05);
+      box-shadow: 0 4px 32px 0 rgba(0,0,0,0.08);
+    }
+    .banner img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+    }
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin: 20px 0 0 0;
+    }
+    .socials a {
+      display: inline-block;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+    .socials a:hover {
+      transform: scale(1.15) rotate(-8deg);
+      background: #ffe082;
+    }
+    .socials img {
+      width: 28px;
+      height: 28px;
+    }
+    .main-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 60vh;
+      position: relative;
+      z-index: 2;
+      margin-top: 30px;
+    }
+    .ben-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      min-width: 180px;
+      z-index: 2;
+    }
+    .ben-side img {
+      width: 180px;
+      max-width: 90vw;
+      cursor: pointer;
+      transition: transform 0.2s;
+      filter: drop-shadow(0 8px 32px #ffb30088);
+      animation: benmove 2.5s infinite alternate;
+    }
+    .ben-side.left img { animation-delay: 0s; }
+    .ben-side.right img { animation-delay: 1.2s; }
+    @keyframes benmove {
+      0% { transform: translateY(0) scale(1);}
+      100% { transform: translateY(-16px) scale(1.05);}
+    }
+    .center-content {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      position: relative;
+    }
+    .tap-ben {
+      width: 220px;
+      height: 220px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 32px 0 rgba(0,0,0,0.12);
+      cursor: pointer;
+      position: relative;
+      margin-bottom: 18px;
+      transition: box-shadow 0.2s;
+    }
+    .tap-ben:active {
+      box-shadow: 0 2px 8px 0 #ffb300;
+    }
+    .tap-ben img {
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+    }
+    .woof {
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 2px 8px #ffb300, 0 0 2px #000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 10;
+    }
+    .woof.show {
+      opacity: 1;
+      animation: woofpop 0.7s forwards;
+    }
+    @keyframes woofpop {
+      0% { opacity: 0; transform: translateY(0) scale(0.7);}
+      30% { opacity: 1; transform: translateY(-10px) scale(1.1);}
+      100% { opacity: 0; transform: translateY(-40px) scale(0.8);}
+    }
+    .floating-coin {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 48px;
+      height: 48px;
+      pointer-events: none;
+      z-index: 20;
+      animation: floatcoin 1.2s forwards;
+    }
+    @keyframes floatcoin {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1);}
+      60% { opacity: 1; transform: translate(-50%, -120%) scale(1.2);}
+      100% { opacity: 0; transform: translate(-50%, -220%) scale(0.7);}
+    }
+    .about-section {
+      margin: 40px auto 0 auto;
+      max-width: 900px;
+      background: rgba(255,255,255,0.13);
+      border-radius: 24px;
+      box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
+      padding: 32px 24px;
+      text-align: center;
+      color: #3d2c00;
+      font-size: 1.25rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 2;
+    }
+    .about-section img {
+      width: 120px;
+      margin: 0 12px 0 0;
+      vertical-align: middle;
+    }
+    .showcase {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 32px;
+      margin: 40px 0 0 0;
+      flex-wrap: wrap;
+    }
+    .showcase img {
+      width: 180px;
+      max-width: 90vw;
+      border-radius: 18px;
+      box-shadow: 0 2px 16px 0 #ffb30044;
+      background: #fff;
+      padding: 8px;
+    }
+    @media (max-width: 900px) {
+      .main-content { flex-direction: column; }
+      .ben-side { flex-direction: row; justify-content: center; }
+      .ben-side img { width: 120px; }
+      .center-content { margin: 24px 0; }
+      .showcase img { width: 120px; }
+    }
+    @media (max-width: 600px) {
+      .banner img { max-width: 220px; }
+      .tap-ben { width: 140px; height: 140px; }
+      .tap-ben img { width: 110px; height: 110px; }
+      .about-section { font-size: 1rem; padding: 18px 6px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Banner -->
+  <div class="banner">
+    <img src="banner.png" alt="BENDOG Logo Banner">
+  </div>
+  <!-- Socials -->
+  <div class="socials">
+    <a href="https://t.co/f6CENdLLHY" target="_blank" title="Telegram">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/telegram.svg" alt="Telegram" style="filter: invert(0.7) sepia(1) hue-rotate(170deg) saturate(3);">
+    </a>
+    <a href="https://x.com/Bendog_CTO" target="_blank" title="X (Twitter)">
+      <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg" alt="X">
+    </a>
+  </div>
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Left Ben -->
+    <div class="ben-side left">
+      <img src="ben-sunglasses.png" alt="Ben the Dog Cool" style="animation-duration:2.5s;">
+      <img src="ben-wave.png" alt="Ben the Dog Waving" style="margin-top:24px;animation-duration:3.2s;">
+    </div>
+    <!-- Center Interactive Ben -->
+    <div class="center-content">
+      <div class="tap-ben" id="tapBen">
+        <span class="woof" id="woofText">WOOF!</span>
+        <img src="ben-phone.png" alt="Tap Ben the Dog" id="benImage">
+      </div>
+      <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px #ffb300;">
+        Tap Ben for a WOOF and collect coins!
+      </div>
+    </div>
+    <!-- Right Ben -->
+    <div class="ben-side right">
+      <img src="ben-cool.png" alt="Ben the Dog Glasses" style="animation-duration:2.8s;">
+      <img src="ben-game.png" alt="Ben the Dog Game" style="margin-top:24px;animation-duration:3.5s;">
+    </div>
+  </div>
+  <!-- About Section -->
+  <div class="about-section">
+    <img src="logo-coin.png" alt="BENDOG Coin" style="float:left;">
+    <strong>Welcome to Bendog Crypto!</strong><br>
+    The most fun and community-driven meme coin on the blockchain. Tap Ben, collect coins, and join our growing community. <br>
+    <br>
+    <span style="color:#ff4e50;font-weight:bold;">$BENDOG</span> is more than a token – it’s a movement! Join us on Telegram and X, and let’s take Ben to the moon together!
+  </div>
+  <!-- Showcase Section -->
+  <div class="showcase">
+    <img src="ben-wave.png" alt="Ben the Dog Waving">
+    <img src="ben-cool.png" alt="Ben the Dog Cool">
+    <img src="ben-sunglasses.png" alt="Ben the Dog Sunglasses">
+    <img src="ben-game.png" alt="Ben the Dog Game">
+  </div>
+  <!-- Floating Coin Template (hidden) -->
+  <img src="logo-coin.png" id="coinTemplate" style="display:none;">
+  <!-- Sound -->
+  <audio id="woofSound" src="https://cdn.pixabay.com/audio/2022/07/26/audio_124bfae5e2.mp3"></audio>
+  <script>
+    // Tap Ben for Woof and floating coin
+    const tapBen = document.getElementById('tapBen');
+    const woofText = document.getElementById('woofText');
+    const woofSound = document.getElementById('woofSound');
+    const coinTemplate = document.getElementById('coinTemplate');
+    tapBen.addEventListener('click', function(e) {
+      // Woof text
+      woofText.classList.remove('show');
+      void woofText.offsetWidth; // restart animation
+      woofText.classList.add('show');
+      // Woof sound
+      woofSound.currentTime = 0;
+      woofSound.play();
+      // Floating coin
+      const coin = coinTemplate.cloneNode(true);
+      coin.style.display = 'block';
+      coin.className = 'floating-coin';
+      // Randomize horizontal position a bit
+      const offset = (Math.random() - 0.5) * 60;
+      coin.style.left = `calc(50% + ${offset}px)`;
+      tapBen.appendChild(coin);
+      setTimeout(() => {
+        coin.remove();
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
