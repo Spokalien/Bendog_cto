@@ -386,7 +386,7 @@
     <div class="car-container">
       <span id="carEmote">🚗💨</span>
       <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
-      <audio id="carMusic" src="Ridin.mp3"></audio>
+      <audio id="carMusic" src="rolling.mp3"></audio>
     </div>
     <div style="height:40px;"></div>
     <div class="about-flex-row">
@@ -436,7 +436,7 @@
     const carEmote = document.getElementById('carEmote');
     let x = 0, speed = 4, direction = 1, running = false;
 
-    // Fallback audio if Ridin.mp3 is missing
+    // Fallback audio if rolling.mp3 is missing
     carMusic.onerror = function() {
       carMusic.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
       carMusic.load();
