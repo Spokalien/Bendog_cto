@@ -107,6 +107,18 @@
       z-index: 2;
       position: relative;
     }
+    .woof-counter {
+      font-size: 1.3rem;
+      color: #fff;
+      text-shadow: 0 2px 8px #ffb300;
+      margin-bottom: 10px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      background: rgba(0,0,0,0.18);
+      border-radius: 12px;
+      padding: 8px 18px;
+      display: inline-block;
+    }
     .tap-ben {
       width: 220px;
       height: 220px;
@@ -328,6 +340,9 @@
     </div>
     <!-- Center Interactive Ben -->
     <div class="center-content">
+      <div class="woof-counter" id="woofCounter">
+        TAP TAP WOOFS: <span id="woofCount">0</span>
+      </div>
       <div class="tap-ben" id="tapBen">
         <span class="woof" id="woofText">WOOF!</span>
         <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
@@ -371,6 +386,9 @@
   <!-- Sound -->
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
+    // Woof counter
+    let woofCount = 0;
+    const woofCountSpan = document.getElementById('woofCount');
     // Tap Ben for Woof and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
@@ -384,6 +402,9 @@
       // Woof sound
       woofSound.currentTime = 0;
       woofSound.play();
+      // Counter
+      woofCount++;
+      woofCountSpan.textContent = woofCount;
       // Floating coin - now floats across the whole site
       const coin = coinTemplate.cloneNode(true);
       coin.style.display = 'block';
