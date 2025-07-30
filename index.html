@@ -75,29 +75,7 @@
       z-index: 2;
       margin-top: 30px;
     }
-    .ben-side {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      z-index: 2;
-    }
-    .ben-side img {
-      width: 180px;
-      max-width: 90vw;
-      cursor: pointer;
-      transition: transform 0.2s;
-      filter: drop-shadow(0 8px 32px #ffb30088);
-      animation: benmove 2.5s infinite alternate;
-    }
-    .ben-side.left img { animation-delay: 0s; }
-    .ben-side.right img { animation-delay: 1.2s; }
-    @keyframes benmove {
-      0% { transform: translateY(0) scale(1);}
-      100% { transform: translateY(-16px) scale(1.05);}
-    }
+    /* Removed .ben-side styles since those images are gone */
     .center-content {
       flex: 2;
       display: flex;
@@ -200,7 +178,7 @@
     }
     .about-section {
       margin: 40px auto 0 auto;
-      max-width: 600px;
+      max-width: 900px;
       background: rgba(255,255,255,0.18);
       border-radius: 24px;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
@@ -234,33 +212,41 @@
     .about-section .main-welcome {
       margin-bottom: 30px;
     }
-    .about-section .sub-info {
-      margin: 30px 0 0 0;
+    .about-flex-row {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
-      gap: 18px;
+      justify-content: center;
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      gap: 40px;
     }
-    .about-section .sub-info-text {
-      font-size: 1.1rem;
+    .about-flex-text {
+      flex: 1.2;
+      text-align: left;
+      font-size: 1.15rem;
       color: #fff;
       text-shadow: 0 2px 8px #ffb300;
       background: rgba(0,0,0,0.18);
       border-radius: 18px;
-      padding: 18px 12px;
+      padding: 24px 18px;
       font-weight: 500;
       line-height: 1.6;
       max-width: 420px;
       margin-bottom: 0;
+      margin-left: 0;
     }
-    .about-section .sub-info-img {
-      max-width: 180px;
+    .about-flex-img {
+      flex: 1;
+      max-width: 320px;
       width: 100%;
       border-radius: 18px;
       box-shadow: 0 2px 16px 0 #ffb30044;
       background: #fff;
-      padding: 8px;
+      padding: 12px;
       object-fit: contain;
+      margin-right: 0;
     }
     .about-section img.team {
       display: block;
@@ -288,11 +274,11 @@
     }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
-      .ben-side { flex-direction: row; justify-content: center; }
-      .ben-side img { width: 120px; }
       .center-content { margin: 24px 0; }
       .about-section { max-width: 98vw; }
-      .about-section .sub-info-img { max-width: 120px; }
+      .about-flex-row { flex-direction: column; gap: 18px; }
+      .about-flex-img { max-width: 220px; }
+      .about-flex-text { max-width: 98vw; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -304,7 +290,7 @@
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
       .about-section strong { font-size: 1.2rem; }
       .about-section .bendog { font-size: 1.3rem; }
-      .about-section .sub-info-text { font-size: 0.95rem; padding: 10px 4px;}
+      .about-flex-text { font-size: 0.95rem; padding: 10px 4px;}
     }
   </style>
 </head>
@@ -334,15 +320,8 @@
   </div>
   <!-- Main Content -->
   <div class="main-content">
-    <!-- Left Ben: Sunglasses -->
-    <div class="ben-side left">
-      <img src="ben-sunglasses.png" alt="Ben the Dog Cool" style="animation-duration:2.5s;">
-    </div>
     <!-- Center Interactive Ben -->
     <div class="center-content">
-      <div class="woof-counter" id="woofCounter">
-        TAP TAP WOOFS: <span id="woofCount">0</span>
-      </div>
       <div class="tap-ben" id="tapBen">
         <span class="woof" id="woofText">WOOF!</span>
         <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
@@ -354,10 +333,6 @@
         CA: AHW5N8iqZobTcBepkSJzZ61XtAuSzBDcpxtrLG6KUKPk
       </div>
     </div>
-    <!-- Right Ben: Waving -->
-    <div class="ben-side right">
-      <img src="ben-wave.png" alt="Ben the Dog Waving" style="animation-duration:3.2s;">
-    </div>
   </div>
   <!-- About Section -->
   <div class="about-section">
@@ -368,12 +343,12 @@
         Tap Ben The Dog and Join our Growing Community.
       </div>
     </div>
-    <div class="sub-info">
-      <div class="sub-info-text">
+    <div class="about-flex-row">
+      <div class="about-flex-text">
         The most fun and community-driven meme coin on the blockchain.<br>
         Tap Ben, collect coins, and join our growing community.
       </div>
-      <img src="joinben.png" alt="Join Ben" class="sub-info-img">
+      <img src="joinben.png" alt="Join Ben" class="about-flex-img">
     </div>
     <img src="teamben.png" alt="BENDOG Team" class="team">
   </div>
@@ -387,15 +362,12 @@
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
     // LOCAL COUNTER using localStorage
-    const woofCountSpan = document.getElementById('woofCount');
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
 
-    // Get the current count from localStorage
-    let localCount = Number(localStorage.getItem('woofCount') || 0);
-    woofCountSpan.textContent = localCount;
+    // No counter display, but you can add one if you want
 
     tapBen.addEventListener('click', function(e) {
       // Woof text
@@ -405,10 +377,6 @@
       // Woof sound
       woofSound.currentTime = 0;
       woofSound.play();
-      // Increment the local counter
-      localCount++;
-      localStorage.setItem('woofCount', localCount);
-      woofCountSpan.textContent = localCount;
       // Floating coin
       const coin = coinTemplate.cloneNode(true);
       coin.style.display = 'block';
