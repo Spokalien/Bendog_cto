@@ -170,7 +170,6 @@
       border-radius: 24px;
       box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08);
       padding: 32px 24px;
-      text-align: center;
       color: #fff;
       font-size: 1.25rem;
       line-height: 1.7;
@@ -186,13 +185,13 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       width: 100%;
       gap: 32px;
       margin-bottom: 50px;
     }
     .ben-cool-img {
-      width: 140px;
+      width: 160px;
       max-width: 30vw;
       height: auto;
       border-radius: 24px;
@@ -201,23 +200,15 @@
       padding: 0;
       object-fit: contain;
       display: block;
+      margin-right: 0;
     }
-    .welcome-box {
-      background: rgba(255,255,255,0.22);
-      border-radius: 20px;
-      box-shadow: 0 2px 16px 0 #ffb30044;
-      padding: 32px 24px 24px 24px;
-      max-width: 480px;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      text-shadow: 0 2px 8px #ffb300;
-      font-size: 1.25rem;
-      margin: 0 auto;
+    .welcome-message {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
     }
     .welcome-title {
       font-size: 2rem;
@@ -230,7 +221,7 @@
       white-space: nowrap;
       display: block;
     }
-    .welcome-box .bendog {
+    .welcome-message .bendog {
       color: #fff;
       font-weight: 900;
       font-size: 2.1rem;
@@ -298,12 +289,11 @@
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
       .about-section { max-width: 98vw; }
-      .about-top-row { flex-direction: column; gap: 12px; margin-bottom: 30px; }
+      .about-top-row { flex-direction: column; gap: 12px; margin-bottom: 30px; align-items: center; }
       .ben-cool-img { max-width: 60vw; width: 100px; }
       .about-flex-row { flex-direction: column; gap: 18px; padding: 18px 8px;}
       .about-flex-img { max-width: 98vw; }
       .about-big-text { max-width: 98vw; font-size: 1.3rem; }
-      .welcome-box { max-width: 98vw; }
       .welcome-title { white-space: normal; }
     }
     @media (max-width: 600px) {
@@ -314,7 +304,7 @@
       .bottom-banner img { max-width: 220px; }
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
       .welcome-title { font-size: 1.2rem; }
-      .welcome-box .bendog { font-size: 1.3rem; }
+      .welcome-message .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
       .ben-cool-img { width: 70px; }
     }
@@ -364,7 +354,7 @@
   <div class="about-section">
     <div class="about-top-row">
       <img src="ben-cool.png" alt="Ben Cool" class="ben-cool-img">
-      <div class="welcome-box">
+      <div class="welcome-message">
         <span class="welcome-title">Welcome to Bendog Crypto!</span>
         <div class="bendog">$BENDOG</div>
         <div>
