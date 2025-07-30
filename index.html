@@ -265,11 +265,11 @@
     .about-big-text {
       flex: 1.2;
       text-align: left;
-      font-size: 1.1rem; /* reduced size */
+      font-size: 2.2rem;
       color: #fff;
       text-shadow: 0 2px 8px #ffb300;
-      font-weight: 500;
-      line-height: 1.6;
+      font-weight: 700;
+      line-height: 1.2;
       max-width: 600px;
       margin-bottom: 0;
       margin-left: 0;
@@ -278,13 +278,50 @@
       padding: 0;
       box-shadow: none;
     }
+    .about-flex-img {
+      flex: 1;
+      max-width: 520px;
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: 0 2px 32px 0 #ffb30088;
+      background: #fff;
+      padding: 16px;
+      object-fit: contain;
+      margin-right: 0;
+      align-self: center;
+      display: block;
+    }
+    .bottom-banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 60px 0 30px 0;
+      width: 100%;
+    }
+    .bottom-banner img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+    }
+    #movingBen {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 140px;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 4px 24px #ffb30088);
+      transition: filter 0.2s;
+      display: block;
+    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
       .about-section { max-width: 98vw; }
       .about-flex-row { flex-direction: column; gap: 18px; padding: 18px 8px;}
       .about-flex-img { max-width: 98vw; }
-      .about-big-text { max-width: 98vw; font-size: 1rem; }
+      .about-big-text { max-width: 98vw; font-size: 1.3rem; }
       .welcome-title { white-space: normal; }
       .car-container { margin: 24px 0 24px 0; }
       #benCar { width: 200px; }
@@ -298,7 +335,7 @@
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
       .welcome-title { font-size: 1.2rem; }
       .welcome-message .bendog { font-size: 1.3rem; }
-      .about-big-text { font-size: 0.95rem; }
+      .about-big-text { font-size: 1.1rem; }
       #benCar { width: 120px; }
       #movingBen { width: 80px; }
       #carEmote { font-size: 1.5rem; top: -28px; }
