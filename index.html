@@ -406,43 +406,35 @@
       }, 2200);
     });
 
-    // Car loop with music
+    // Car bounce (ping-pong) with music
     const benCar = document.getElementById('benCar');
     const carMusic = document.getElementById('carMusic');
-    let x = 0; // Start at 0, will be set on click
-    let speed = 2;
-    let acceleration = 0.12;
-    let running = false;
+    let x = 0, speed = 4, direction = 1, running = false;
 
     function animateCar() {
-      speed += acceleration;
-      x += speed;
-      benCar.style.transform = `translateX(${x}px)`;
-      if (x > window.innerWidth) {
-        x = -benCar.offsetWidth;
-        speed = 2;
-      }
-      if (running) {
-        requestAnimationFrame(animateCar);
-      }
+      x += speed * direction;
+      benCar.style.transform = `translateX(${x}px) scaleX(${direction})`;
+      if (x > window.innerWidth - benCar.offsetWidth) direction = -1;
+      if (x < 0) direction = 1;
+      if (running) requestAnimationFrame(animateCar);
     }
 
     benCar.addEventListener('click', function() {
-      if (carMusic.paused) {
-        carMusic.currentTime = 0;
-        carMusic.play();
-      }
+      carMusic.currentTime = 0;
+      carMusic.play().catch(function(e){
+        alert("Audio could not be played. User gesture required or file missing.");
+      });
       if (!running) {
         running = true;
-        x = -benCar.offsetWidth;
-        speed = 2;
+        x = 0;
+        direction = 1;
         animateCar();
       }
     });
 
     carMusic.addEventListener('ended', function() {
       running = false;
-      benCar.style.transform = 'translateX(0)';
+      benCar.style.transform = 'translateX(0) scaleX(1)';
     });
 
     // Mouse-following Ben
