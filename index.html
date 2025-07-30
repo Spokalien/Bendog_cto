@@ -18,8 +18,8 @@
     body {
       position: relative;
       min-height: 100vh;
-      background: url('moonben.png') center center / cover no-repeat fixed;
-      animation: bgmove 20s linear infinite alternate;
+      background: #181818;
+      overflow: hidden;
     }
     @keyframes bgmove {
       0% { background-position: 50% 100%; }
@@ -265,6 +265,18 @@
       width: 100%;
       height: auto;
     }
+    #movingBen {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 140px;
+      z-index: 9999;
+      pointer-events: none;
+      user-select: none;
+      filter: drop-shadow(0 4px 24px #ffb30088);
+      transition: filter 0.2s;
+      display: block;
+    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
@@ -284,36 +296,29 @@
       .welcome-title { font-size: 1.2rem; }
       .welcome-message .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
+      #movingBen { width: 80px; }
     }
   </style>
 </head>
 <body>
-  <!-- Banner -->
   <div class="banner">
     <img src="banner.png" alt="BENDOG Logo Banner">
   </div>
-  <!-- Socials -->
   <div class="socials">
-    <!-- Telegram SVG -->
     <a href="https://t.co/f6CENdLLHY" target="_blank" title="Telegram">
       <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
     </a>
-    <!-- X (Twitter) SVG -->
     <a href="https://x.com/Bendog_CTO" target="_blank" title="X (Twitter)">
       <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
     </a>
-    <!-- CoinMarketCap PNG -->
     <a href="https://coinmarketcap.com/currencies/ben-the-dog/" target="_blank" title="CoinMarketCap">
       <img src="CoinMarketcap.png" alt="CoinMarketCap">
     </a>
-    <!-- MEXC PNG -->
     <a href="https://www.mexc.com/pt-PT/exchange/BENDOG_USDT" target="_blank" title="MEXC">
       <img src="mexc-logo.png" alt="MEXC">
     </a>
   </div>
-  <!-- Main Content -->
   <div class="main-content">
-    <!-- Center Interactive Ben -->
     <div class="center-content">
       <div class="tap-ben" id="tapBen">
         <span class="woof" id="woofText">WOOF!</span>
@@ -327,7 +332,6 @@
       </div>
     </div>
   </div>
-  <!-- About Section -->
   <div class="about-section">
     <div class="welcome-message">
       <span class="welcome-title">Welcome to Bendog Crypto!</span>
@@ -345,30 +349,44 @@
       <img src="teamben.png" alt="BENDOG Team" class="about-flex-img">
     </div>
   </div>
-  <!-- Bottom Banner -->
   <div class="bottom-banner">
     <img src="banner.png" alt="BENDOG Logo Banner">
   </div>
-  <!-- Floating Coin Template (hidden) -->
+  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog">
   <img src="logo-coin.png" id="coinTemplate" style="display:none;">
-  <!-- Sound -->
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
-    // LOCAL COUNTER using localStorage
+    // Ben follows mouse
+    const ben = document.getElementById('movingBen');
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+    let benX = mouseX, benY = mouseY;
+
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX - ben.offsetWidth / 2;
+      mouseY = e.clientY - ben.offsetHeight / 2;
+    });
+
+    function animateBen() {
+      benX += (mouseX - benX) * 0.15;
+      benY += (mouseY - benY) * 0.15;
+      ben.style.left = benX + 'px';
+      ben.style.top = benY + 'px';
+      requestAnimationFrame(animateBen);
+    }
+    animateBen();
+
+    // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
 
     tapBen.addEventListener('click', function(e) {
-      // Woof text
       woofText.classList.remove('show');
       void woofText.offsetWidth; // restart animation
       woofText.classList.add('show');
-      // Woof sound
       woofSound.currentTime = 0;
       woofSound.play();
-      // Floating coin
       const coin = coinTemplate.cloneNode(true);
       coin.style.display = 'block';
       coin.className = 'floating-coin';
