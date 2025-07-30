@@ -386,21 +386,16 @@
   <!-- Sound -->
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
-    // GLOBAL COUNTER using CountAPI
-    const NAMESPACE = 'bendog-woof';
-    const KEY = 'global';
+    // LOCAL COUNTER using localStorage
     const woofCountSpan = document.getElementById('woofCount');
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
 
-    // Get the current count on page load
-    fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`)
-      .then(res => res.json())
-      .then(data => {
-        woofCountSpan.textContent = data.value;
-      });
+    // Get the current count from localStorage
+    let localCount = Number(localStorage.getItem('woofCount') || 0);
+    woofCountSpan.textContent = localCount;
 
     tapBen.addEventListener('click', function(e) {
       // Woof text
@@ -410,12 +405,10 @@
       // Woof sound
       woofSound.currentTime = 0;
       woofSound.play();
-      // Increment the global counter
-      fetch(`https://api.countapi.xyz/update/${NAMESPACE}/${KEY}/?amount=1`)
-        .then(res => res.json())
-        .then(data => {
-          woofCountSpan.textContent = data.value;
-        });
+      // Increment the local counter
+      localCount++;
+      localStorage.setItem('woofCount', localCount);
+      woofCountSpan.textContent = localCount;
       // Floating coin
       const coin = coinTemplate.cloneNode(true);
       coin.style.display = 'block';
