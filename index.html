@@ -215,6 +215,7 @@
       width: 100%;
       display: flex;
       justify-content: center;
+      position: relative;
     }
     #benCar {
       width: 320px;
@@ -225,6 +226,27 @@
       position: relative;
       will-change: transform;
       transition: filter 0.2s;
+      z-index: 2;
+    }
+    #carEmote {
+      position: absolute;
+      left: 50%;
+      top: -40px;
+      transform: translateX(-50%);
+      font-size: 2.5rem;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.2s;
+      z-index: 3;
+      user-select: none;
+    }
+    #carEmote.show {
+      opacity: 1;
+      animation: carEmoteAnim 1.2s infinite alternate;
+    }
+    @keyframes carEmoteAnim {
+      0% { transform: translateX(-50%) translateY(0) scale(1);}
+      100% { transform: translateX(-50%) translateY(-12px) scale(1.1);}
     }
     .about-flex-row {
       display: flex;
@@ -316,6 +338,7 @@
       .about-big-text { font-size: 1.1rem; }
       #benCar { width: 120px; }
       #movingBen { width: 80px; }
+      #carEmote { font-size: 1.5rem; top: -28px; }
     }
   </style>
 </head>
@@ -361,6 +384,7 @@
     </div>
     <!-- Car image and music below welcome message -->
     <div class="car-container">
+      <span id="carEmote">🚗💨</span>
       <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
       <audio id="carMusic" src="Ridin.mp3"></audio>
     </div>
@@ -406,14 +430,16 @@
       }, 2200);
     });
 
-    // Car bounce (ping-pong) with music
+    // Car bounce (ping-pong) with music and emote
     const benCar = document.getElementById('benCar');
     const carMusic = document.getElementById('carMusic');
+    const carEmote = document.getElementById('carEmote');
     let x = 0, speed = 4, direction = 1, running = false;
 
     function animateCar() {
       x += speed * direction;
       benCar.style.transform = `translateX(${x}px) scaleX(${direction})`;
+      carEmote.style.transform = `translateX(${x + benCar.offsetWidth/2}px) translateY(-40px) scaleX(${direction})`;
       if (x > window.innerWidth - benCar.offsetWidth) direction = -1;
       if (x < 0) direction = 1;
       if (running) requestAnimationFrame(animateCar);
@@ -428,6 +454,7 @@
         running = true;
         x = 0;
         direction = 1;
+        carEmote.classList.add('show');
         animateCar();
       }
     });
@@ -435,6 +462,7 @@
     carMusic.addEventListener('ended', function() {
       running = false;
       benCar.style.transform = 'translateX(0) scaleX(1)';
+      carEmote.classList.remove('show');
     });
 
     // Mouse-following Ben
