@@ -386,14 +386,22 @@
   <!-- Sound -->
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
-    // Woof counter
-    let woofCount = 0;
+    // GLOBAL COUNTER using CountAPI
+    const NAMESPACE = 'bendog-woof';
+    const KEY = 'global';
     const woofCountSpan = document.getElementById('woofCount');
-    // Tap Ben for Woof and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
+
+    // Get the current count on page load
+    fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`)
+      .then(res => res.json())
+      .then(data => {
+        woofCountSpan.textContent = data.value;
+      });
+
     tapBen.addEventListener('click', function(e) {
       // Woof text
       woofText.classList.remove('show');
@@ -402,17 +410,18 @@
       // Woof sound
       woofSound.currentTime = 0;
       woofSound.play();
-      // Counter
-      woofCount++;
-      woofCountSpan.textContent = woofCount;
-      // Floating coin - now floats across the whole site
+      // Increment the global counter
+      fetch(`https://api.countapi.xyz/update/${NAMESPACE}/${KEY}/?amount=1`)
+        .then(res => res.json())
+        .then(data => {
+          woofCountSpan.textContent = data.value;
+        });
+      // Floating coin
       const coin = coinTemplate.cloneNode(true);
       coin.style.display = 'block';
       coin.className = 'floating-coin';
-      // Randomize horizontal position across the viewport
       const startX = tapBen.getBoundingClientRect().left + tapBen.offsetWidth/2 + (Math.random()-0.5)*60;
       coin.style.left = `${startX}px`;
-      // Start at the tapBen vertical position
       const startY = tapBen.getBoundingClientRect().top + tapBen.offsetHeight/2 + window.scrollY;
       coin.style.top = `${startY}px`;
       document.body.appendChild(coin);
