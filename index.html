@@ -197,10 +197,16 @@
       text-shadow: 0 2px 8px #ffb300;
       font-size: 1.25rem;
     }
-    .welcome-box strong {
+    .welcome-title {
       font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 1px;
       margin-bottom: 10px;
       display: block;
+      color: #fff;
+      text-shadow: 0 2px 8px #ffb300, 0 0 2px #000;
+      font-family: 'Montserrat', Arial, sans-serif;
+      white-space: nowrap;
     }
     .welcome-box .bendog {
       color: #fff;
@@ -287,6 +293,7 @@
       .about-big-text { max-width: 98vw; font-size: 1.3rem; }
       .about-joinben-img { max-width: 98vw; width: 98vw; }
       .welcome-box { max-width: 98vw; }
+      .welcome-title { white-space: normal; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -295,7 +302,7 @@
       .about-section { font-size: 1rem; padding: 18px 6px; }
       .bottom-banner img { max-width: 220px; }
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
-      .welcome-box strong { font-size: 1.2rem; }
+      .welcome-title { font-size: 1.2rem; }
       .welcome-box .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
     }
@@ -344,7 +351,7 @@
   <!-- About Section -->
   <div class="about-section">
     <div class="welcome-box">
-      <strong>Welcome to Bendog Crypto!</strong>
+      <span class="welcome-title">Welcome to Bendog Crypto!</span>
       <div class="bendog">$BENDOG</div>
       <div>
         Tap Ben The Dog and Join our Growing Community.
