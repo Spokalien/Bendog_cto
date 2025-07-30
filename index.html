@@ -18,8 +18,8 @@
     body {
       position: relative;
       min-height: 100vh;
-      background: #181818;
-      overflow: hidden;
+      background: url('moonben.png') center center / cover no-repeat fixed;
+      animation: bgmove 20s linear infinite alternate;
     }
     @keyframes bgmove {
       0% { background-position: 50% 100%; }
@@ -265,18 +265,6 @@
       width: 100%;
       height: auto;
     }
-    #movingBen {
-      position: fixed;
-      left: 0;
-      top: 0;
-      width: 140px;
-      z-index: 9999;
-      pointer-events: none;
-      user-select: none;
-      filter: drop-shadow(0 4px 24px #ffb30088);
-      transition: filter 0.2s;
-      display: block;
-    }
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
@@ -296,7 +284,6 @@
       .welcome-title { font-size: 1.2rem; }
       .welcome-message .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
-      #movingBen { width: 80px; }
     }
   </style>
 </head>
@@ -352,29 +339,9 @@
   <div class="bottom-banner">
     <img src="banner.png" alt="BENDOG Logo Banner">
   </div>
-  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog">
   <img src="logo-coin.png" id="coinTemplate" style="display:none;">
   <audio id="woofSound" src="woof.mp3"></audio>
   <script>
-    // Ben follows mouse
-    const ben = document.getElementById('movingBen');
-    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-    let benX = mouseX, benY = mouseY;
-
-    document.addEventListener('mousemove', function(e) {
-      mouseX = e.clientX - ben.offsetWidth / 2;
-      mouseY = e.clientY - ben.offsetHeight / 2;
-    });
-
-    function animateBen() {
-      benX += (mouseX - benX) * 0.15;
-      benY += (mouseY - benY) * 0.15;
-      ben.style.left = benX + 'px';
-      ben.style.top = benY + 'px';
-      requestAnimationFrame(animateBen);
-    }
-    animateBen();
-
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
