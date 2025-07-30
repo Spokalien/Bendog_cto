@@ -187,8 +187,8 @@
       border-radius: 20px;
       box-shadow: 0 2px 16px 0 #ffb30044;
       padding: 32px 24px 24px 24px;
-      margin-bottom: 30px;
-      max-width: 480px;
+      margin-bottom: 50px;
+      max-width: 540px;
       width: 100%;
       margin-left: auto;
       margin-right: auto;
@@ -196,17 +196,38 @@
       color: #fff;
       text-shadow: 0 2px 8px #ffb300;
       font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+    .welcome-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 18px;
+      object-fit: contain;
+      box-shadow: 0 2px 16px 0 #ffb30044;
+      background: #fff;
+      flex-shrink: 0;
+    }
+    .welcome-texts {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
     }
     .welcome-title {
       font-size: 2rem;
       font-weight: 900;
       letter-spacing: 1px;
       margin-bottom: 10px;
-      display: block;
       color: #fff;
       text-shadow: 0 2px 8px #ffb300, 0 0 2px #000;
       font-family: 'Montserrat', Arial, sans-serif;
       white-space: nowrap;
+      display: block;
     }
     .welcome-box .bendog {
       color: #fff;
@@ -216,18 +237,6 @@
       text-shadow: 0 2px 8px #ffb300, 0 0 2px #000;
       margin: 0 0 10px 0;
       display: inline-block;
-    }
-    .about-joinben-img {
-      display: block;
-      margin: 0 auto 40px auto;
-      width: 400px;
-      max-width: 90%;
-      height: auto;
-      border-radius: 24px;
-      box-shadow: 0 2px 32px 0 #ffb30088;
-      background: #fff;
-      padding: 0;
-      object-fit: contain;
     }
     .about-flex-row {
       display: flex;
@@ -291,9 +300,9 @@
       .about-flex-row { flex-direction: column; gap: 18px; padding: 18px 8px;}
       .about-flex-img { max-width: 98vw; }
       .about-big-text { max-width: 98vw; font-size: 1.3rem; }
-      .about-joinben-img { max-width: 98vw; width: 98vw; }
-      .welcome-box { max-width: 98vw; }
+      .welcome-box { max-width: 98vw; flex-direction: column; gap: 12px; align-items: center; }
       .welcome-title { white-space: normal; }
+      .welcome-texts { align-items: center; text-align: center; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -305,6 +314,7 @@
       .welcome-title { font-size: 1.2rem; }
       .welcome-box .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
+      .welcome-img { width: 60px; height: 60px; }
     }
   </style>
 </head>
@@ -351,13 +361,16 @@
   <!-- About Section -->
   <div class="about-section">
     <div class="welcome-box">
-      <span class="welcome-title">Welcome to Bendog Crypto!</span>
-      <div class="bendog">$BENDOG</div>
-      <div>
-        Tap Ben The Dog and Join our Growing Community.
+      <img src="ben-cool.png" alt="Ben Cool" class="welcome-img">
+      <div class="welcome-texts">
+        <span class="welcome-title">Welcome to Bendog Crypto!</span>
+        <div class="bendog">$BENDOG</div>
+        <div>
+          Tap Ben The Dog and Join our Growing Community.
+        </div>
       </div>
     </div>
-    <img src="joinben.png" alt="Join Ben" class="about-joinben-img">
+    <div style="height:40px;"></div>
     <div class="about-flex-row">
       <div class="about-big-text">
         The most fun and community-driven meme coin on the blockchain.<br>
