@@ -7,6 +7,7 @@
   <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
+    /* ... (your existing CSS, with yellow -> blue color updates) ... */
     html, body {
       height: 100%;
       margin: 0;
@@ -59,7 +60,7 @@
     }
     .socials a:hover {
       transform: scale(1.15) rotate(-8deg);
-      background: #ffe082;
+      background: rgba(34,158,217,0.12); /* blue hover */
     }
     .socials img {
       width: 28px;
@@ -110,7 +111,7 @@
       user-select: none;
       pointer-events: none;
       border-radius: 50%;
-      box-shadow: 0 0 32px 0 #fff7c0cc;
+      box-shadow: 0 0 32px 0 rgba(34,158,217,0.6); /* blue glow */
       background: rgba(255,255,255,0.12);
     }
     .woof {
@@ -168,7 +169,7 @@
       max-width: 1200px;
       background: rgba(255,255,255,0.18);
       border-radius: 24px;
-      box-shadow: 0 2px 16px 0 #ffb30044;
+      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.24); /* blue box shadow */
       padding: 32px 24px;
       color: #fff;
       font-size: 1.25rem;
@@ -222,7 +223,7 @@
       max-width: 90vw;
       cursor: pointer;
       user-select: none;
-      filter: drop-shadow(0 4px 24px #ffb30088);
+      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
       position: relative;
       will-change: transform;
       transition: filter 0.2s;
@@ -259,7 +260,7 @@
       gap: 40px;
       background: rgba(255,255,255,0.13);
       border-radius: 20px;
-      box-shadow: 0 2px 16px 0 #229ED900;
+      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.16); /* blue */
       padding: 32px 24px;
     }
     .about-big-text {
@@ -283,7 +284,7 @@
       max-width: 520px;
       width: 100%;
       border-radius: 24px;
-      box-shadow: 0 2px 32px 0 #229ED900;
+      box-shadow: 0 2px 32px 0 rgba(34,158,217,0.20); /* blue */
       background: #fff;
       padding: 16px;
       object-fit: contain;
@@ -311,7 +312,7 @@
       z-index: 9999;
       pointer-events: none;
       user-select: none;
-      filter: drop-shadow(0 4px 24px #ffb30088);
+      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
       transition: filter 0.2s;
       display: block;
     }
@@ -353,17 +354,12 @@
     <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
       <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
     </a>
-    <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
-      <svg viewBox="0 0 100 100" fill="none" width="28" height="28">
-        <rect width="100" height="100" rx="15" fill="#229ED9"/>
-        <text x="50" y="60" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Ave</text>
-      </svg>
+    <!-- Ave.ai and Dyorswap now use image logos -->
+    <a href="https://ave.ai" target="_blank" title="Ave.ai">
+      <img src="Ave.ai.png" alt="Ave.ai logo">
     </a>
-    <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
-      <svg viewBox="0 0 100 100" fill="none" width="28" height="28">
-        <rect width="100" height="100" rx="15" fill="#229ED9"/>
-        <text x="50" y="60" font-family="Arial" font-size="14" fill="white" text-anchor="middle">Dyorswap</text>
-      </svg>
+    <a href="https://dyorswap.com" target="_blank" title="Dyorswap">
+      <img src="Dyorswap.png" alt="Dyorswap logo">
     </a>
   </div>
   <div class="main-content">
@@ -407,7 +403,8 @@
   </div>
   <img src="logo-coin.png" id="coinTemplate" style="display:none;">
   <audio id="woofSound" src="woof.mp3"></audio>
-  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog" style="position:fixed; left:0; top:0; width:140px; z-index:9999; pointer-events:none; user-select:none; filter: drop-shadow(0 4px 24px #ffb30088);">
+  <!-- Mouse-following Ben image -->
+  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog" style="position:fixed; left:0; top:0; width:140px; z-index:9999; pointer-events:none; user-select:none; filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45));">
   <script>
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
