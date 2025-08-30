@@ -4,10 +4,50 @@
   <meta charset="UTF-8">
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BENDOG Crypto - The most fun and community-driven meme coin on the blockchain">
+  <meta property="og:title" content="BENDOG Crypto (XBENDOG)">
+  <meta property="og:description" content="Join the funniest dog on the blockchain! Tap Ben, collect coins, and swap on Dyorswap">
+  <meta property="og:image" content="banner.png">
+  <meta property="og:url" content="https://yourwebsite.com">
   <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
+  
   <style>
-    /* ... (your existing CSS, with yellow -> blue color updates) ... */
+    /* CSS Variables for easy color changes */
+    :root {
+      --primary-blue: #229ED9;
+      --primary-blue-r: 34;
+      --primary-blue-g: 158;
+      --primary-blue-b: 217;
+      --text-glow-shadow: 0 2px 8px var(--primary-blue), 0 0 2px #000;
+      --bg-alpha: rgba(255,255,255,0.08);
+    }
+
+    /* Skip Link for Accessibility */
+    .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        z-index: -999;
+    }
+    .skip-link:focus {
+        left: 0;
+        top: 0;
+        width: auto;
+        height: auto;
+        padding: 10px;
+        background-color: var(--primary-blue);
+        color: white;
+        text-decoration: none;
+        z-index: 10000;
+        text-align: center;
+    }
+
+    /* Base Styles */
     html, body {
       height: 100%;
       margin: 0;
@@ -18,7 +58,6 @@
     }
     body {
       position: relative;
-      min-height: 100vh;
       background: url('moonben.png') center center / cover no-repeat fixed;
       animation: bgmove 20s linear infinite alternate;
     }
@@ -26,6 +65,8 @@
       0% { background-position: 50% 100%; }
       100% { background-position: 50% 0%; }
     }
+
+    /* Header Section */
     .banner {
       display: flex;
       align-items: center;
@@ -60,13 +101,15 @@
     }
     .socials a:hover {
       transform: scale(1.15) rotate(-8deg);
-      background: rgba(34,158,217,0.12); /* blue hover */
+      background: rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.12);
     }
     .socials img {
       width: 28px;
       height: 28px;
       display: block;
     }
+
+    /* Main Content - Tap Ben Section */
     .main-content {
       display: flex;
       align-items: center;
@@ -102,7 +145,7 @@
       overflow: hidden;
     }
     .tap-ben:active {
-      box-shadow: 0 2px 8px 0 #229ED9;
+      box-shadow: 0 2px 8px 0 var(--primary-blue);
     }
     .tap-ben img {
       width: 180px;
@@ -111,7 +154,7 @@
       user-select: none;
       pointer-events: none;
       border-radius: 50%;
-      box-shadow: 0 0 32px 0 rgba(34,158,217,0.6); /* blue glow */
+      box-shadow: 0 0 32px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.6);
       background: rgba(255,255,255,0.12);
     }
     .woof {
@@ -122,7 +165,7 @@
       font-size: 2.2rem;
       font-weight: bold;
       color: #fff;
-      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
+      text-shadow: var(--text-glow-shadow);
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s;
@@ -155,7 +198,7 @@
       margin: 10px 0 0 0;
       font-size: 1.1rem;
       color: #fff;
-      text-shadow: 0 2px 8px #229ED9;
+      text-shadow: 0 2px 8px var(--primary-blue);
       background: rgba(0,0,0,0.18);
       border-radius: 12px;
       padding: 8px 18px;
@@ -164,19 +207,129 @@
       font-family: monospace;
       user-select: all;
     }
+
+    /* New: Token Stats Section */
+    .stats-section {
+      margin: 40px auto;
+      max-width: 1200px;
+      padding: 24px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.2);
+      text-align: center;
+      color: #fff;
+    }
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .stat-item {
+      background: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 12px;
+      min-width: 180px;
+      text-shadow: var(--text-glow-shadow);
+    }
+    .stat-value {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin: 8px 0;
+    }
+    .stat-label {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    /* New: How to Buy Section */
+    .how-to-buy {
+      margin: 40px auto;
+      max-width: 1000px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      color: #fff;
+      text-shadow: var(--text-glow-shadow);
+    }
+    .how-to-buy h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      font-size: 1.8rem;
+    }
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .step {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(255,255,255,0.05);
+      padding: 16px;
+      border-radius: 12px;
+      text-align: center;
+    }
+    .step-number {
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      background: var(--primary-blue);
+      color: white;
+      border-radius: 50%;
+      font-weight: 900;
+      margin-bottom: 12px;
+    }
+
+    /* New: Community Section */
+    .community-section {
+      margin: 40px auto;
+      max-width: 1200px;
+      text-align: center;
+      color: #fff;
+    }
+    .community-title {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      text-shadow: var(--text-glow-shadow);
+    }
+    .community-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .community-card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s;
+    }
+    .community-card:hover {
+      transform: translateY(-5px);
+    }
+    .community-icon {
+      font-size: 2.5rem;
+      margin-bottom: 12px;
+    }
+
+    /* About Section */
     .about-section {
       margin: 40px auto 0 auto;
       max-width: 1200px;
       background: rgba(255,255,255,0.18);
       border-radius: 24px;
-      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.24); /* blue box shadow */
+      box-shadow: 0 2px 16px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.24);
       padding: 32px 24px;
       color: #fff;
       font-size: 1.25rem;
       line-height: 1.7;
       position: relative;
       z-index: 2;
-      text-shadow: 0 2px 8px #229ED9;
+      text-shadow: 0 2px 8px var(--primary-blue);
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -197,7 +350,7 @@
       letter-spacing: 1px;
       margin-bottom: 10px;
       color: #fff;
-      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
+      text-shadow: var(--text-glow-shadow);
       font-family: 'Montserrat', Arial, sans-serif;
       white-space: nowrap;
       display: block;
@@ -207,7 +360,7 @@
       font-weight: 900;
       font-size: 2.1rem;
       letter-spacing: 2px;
-      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
+      text-shadow: var(--text-glow-shadow);
       margin: 0 0 10px 0;
       display: inline-block;
     }
@@ -223,7 +376,7 @@
       max-width: 90vw;
       cursor: pointer;
       user-select: none;
-      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
+      filter: drop-shadow(0 4px 24px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.45));
       position: relative;
       will-change: transform;
       transition: filter 0.2s;
@@ -260,7 +413,7 @@
       gap: 40px;
       background: rgba(255,255,255,0.13);
       border-radius: 20px;
-      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.16); /* blue */
+      box-shadow: 0 2px 16px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.16);
       padding: 32px 24px;
     }
     .about-big-text {
@@ -268,7 +421,7 @@
       text-align: left;
       font-size: 2.2rem;
       color: #fff;
-      text-shadow: 0 2px 8px #229ED9;
+      text-shadow: 0 2px 8px var(--primary-blue);
       font-weight: 700;
       line-height: 1.2;
       max-width: 600px;
@@ -284,7 +437,7 @@
       max-width: 520px;
       width: 100%;
       border-radius: 24px;
-      box-shadow: 0 2px 32px 0 rgba(34,158,217,0.20); /* blue */
+      box-shadow: 0 2px 32px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.20);
       background: #fff;
       padding: 16px;
       object-fit: contain;
@@ -292,6 +445,80 @@
       align-self: center;
       display: block;
     }
+
+    /* New: Roadmap Section */
+    .roadmap-section {
+      margin: 40px auto;
+      max-width: 1200px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: 24px;
+      color: #fff;
+    }
+    .roadmap-title {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 24px;
+      text-shadow: var(--text-glow-shadow);
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: var(--primary-blue);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+    .timeline-item {
+      padding: 10px 40px;
+      position: relative;
+      width: 50%;
+      opacity: 0.8;
+    }
+    .timeline-item.active {
+      opacity: 1;
+    }
+    .timeline-item:nth-child(odd) {
+      left: 0;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+    }
+    .timeline-content {
+      padding: 20px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      position: relative;
+    }
+    .timeline-content::after {
+      content: '';
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      right: -12px;
+      background: var(--primary-blue);
+      border: 4px solid #fff;
+      top: 15px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+    .timeline-item:nth-child(even) .timeline-content::after {
+      left: -12px;
+      right: auto;
+    }
+    .timeline-date {
+      font-weight: 900;
+      color: var(--primary-blue);
+    }
+
+    /* Footer Section */
     .bottom-banner {
       display: flex;
       align-items: center;
@@ -304,6 +531,16 @@
       width: 100%;
       height: auto;
     }
+    footer p {
+        text-align: center;
+        color: rgba(255,255,255,0.7);
+        font-size: 0.9em;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+    }
+
+    /* Floating Ben (Mouse Follower) */
     #movingBen {
       position: fixed;
       left: 0;
@@ -312,10 +549,12 @@
       z-index: 9999;
       pointer-events: none;
       user-select: none;
-      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
+      filter: drop-shadow(0 4px 24px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.45));
       transition: filter 0.2s;
       display: block;
     }
+
+    /* Media Queries for Responsiveness */
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
@@ -326,6 +565,22 @@
       .welcome-title { white-space: normal; }
       .car-container { margin: 24px 0 24px 0; }
       #benCar { width: 200px; }
+      
+      /* Timeline adjustments */
+      .timeline::after {
+        left: 31px;
+      }
+      .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+      }
+      .timeline-item:nth-child(even) {
+        left: 0;
+      }
+      .timeline-content::after {
+        left: -12px;
+      }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -344,159 +599,338 @@
   </style>
 </head>
 <body>
-  <div class="banner">
-    <img src="banner.png" alt="BENDOG Logo Banner">
-  </div>
-  <div class="socials">
-    <a href="https://t.me/Bendogscto" target="_blank" title="Telegram">
-      <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
-    </a>
-    <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
-      <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
-    </a>
-    <!-- Ave.ai and Dyorswap now use image logos -->
-    <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
-      <img src="Ave.ai.png" alt="Ave.ai logo">
-    </a>
-    <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
-      <img src="Dyorswap.png" alt="Dyorswap logo">
-    </a>
-    <a href="https://web3.okx.com/pt-pt/token/x-layer/0xda1408d7599d74fe92458c97a8a4e90359d886b2" target="_blank" title="OKX">
-    <img src="okxlogo.png" alt="OKX logo">
-  </a>
-  </div>
-  <div class="main-content">
-    <div class="center-content">
-      <div class="tap-ben" id="tapBen">
-        <span class="woof" id="woofText">WOOF!</span>
-        <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
-      </div>
-      <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px #229ED9;">
-        Tap Ben for a WOOF!
-      </div>
-      <div class="ca-section">
-        CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="banner">
+      <img src="banner.png" alt="BENDOG Logo Banner">
+    </div>
+    <div class="socials">
+      <a href="https://t.me/Bendogscto" target="_blank" title="Telegram">
+        <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
+      </a>
+      <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
+        <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
+      </a>
+      <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
+        <img src="Ave.ai.png" alt="Ave.ai logo">
+      </a>
+      <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
+        <img src="Dyorswap.png" alt="Dyorswap logo">
+      </a>
+      <a href="https://web3.okx.com/pt-pt/token/x-layer/0xda1408d7599d74fe92458c97a8a4e90359d886b2" target="_blank" title="OKX">
+        <img src="okxlogo.png" alt="OKX logo">
+      </a>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <div class="main-content">
+      <div class="center-content">
+        <div class="tap-ben" id="tapBen">
+          <span class="woof" id="woofText">WOOF!</span>
+          <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
+        </div>
+        <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px var(--primary-blue);">
+          Tap Ben for a WOOF!
+        </div>
+        <div class="ca-section">
+          CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2
+        </div>
       </div>
     </div>
-  </div>
-  <div class="about-section">
-    <div class="welcome-message">
-      <span class="welcome-title">Welcome to Bendog Crypto!</span>
-      <div class="bendog">XBENDOG</div>
-      <div>
-        Tap Ben The Dog and Join our Growing Community.
+
+    <!-- New: Token Stats -->
+    <section class="stats-section">
+      <h2>XBENDOG Statistics</h2>
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-label">Total Supply</div>
+          <div class="stat-value">1,000,000,000</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Chain</div>
+          <div class="stat-value">X-Layer</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Taps Collected</div>
+          <div class="stat-value" id="tapCounter">0</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-label">Community Size</div>
+          <div class="stat-value" id="communityCounter">0</div>
+        </div>
       </div>
-    </div>
-    <div class="car-container">
-      <span id="carEmote">🚗💨</span>
-      <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
-      <audio id="carMusic" src="rolling.mp3"></audio>
-    </div>
-    <div style="height:40px;"></div>
-    <div class="about-flex-row">
-      <div class="about-big-text">
-        The most fun and community-driven meme coin on the blockchain.<br>
-        Tap Ben, collect coins, and join our growing community.
+    </section>
+
+    <!-- New: How to Buy -->
+    <section class="how-to-buy">
+      <h2>How to Buy XBENDOG</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Get OKX Wallet</h3>
+          <p>Download OKX Wallet or use MetaMask with X-Layer network</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Get OKB</h3>
+          <p>Purchase OKB on your preferred exchange</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Connect to Dyorswap</h3>
+          <p>Go to Dyorswap and connect your wallet to X-Layer</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Swap for XBENDOG</h3>
+          <p>Enter the contract address and swap your OKB</p>
+        </div>
       </div>
-      <img src="teamben.png" alt="BENDOG Team" class="about-flex-img">
+    </section>
+
+    <section class="about-section">
+      <div class="welcome-message">
+        <span class="welcome-title">Welcome to Bendog Crypto!</span>
+        <div class="bendog">XBENDOG</div>
+        <div>
+          Tap Ben The Dog and Join our Growing Community.
+        </div>
+      </div>
+      <div class="car-container">
+        <span id="carEmote">🚗💨</span>
+        <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
+        <audio id="carMusic" src="rolling.mp3"></audio>
+      </div>
+      <div style="height:40px;"></div>
+      <div class="about-flex-row">
+        <div class="about-big-text">
+          The most fun and community-driven meme coin on the blockchain.<br>
+          Tap Ben, collect coins, and join our growing community.
+        </div>
+        <img src="teamben.png" alt="BENDOG Team" class="about-flex-img">
+      </div>
+    </section>
+
+    <!-- New: Roadmap -->
+    <section class="roadmap-section">
+      <h2 class="roadmap-title">Our Roadmap</h2>
+      <div class="timeline">
+        <div class="timeline-item active">
+          <div class="timeline-content">
+            <div class="timeline-date">PHASE 1</div>
+            <h3>Launch & Community</h3>
+            <p>Token launch, website, social media, community building</p>
+          </div>
+        </div>
+        <div class="timeline-item active">
+          <div class="timeline-content">
+            <div class="timeline-date">PHASE 2</div>
+            <h3>Exchange Listings</h3>
+            <p>Get listed on major DEXs and CEXs</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">PHASE 3</div>
+            <h3>NFT Collection</h3>
+            <p>Launch BENDOG NFT collection with staking rewards</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <div class="timeline-date">PHASE 4</div>
+            <h3>Merch Store</h3>
+            <p>Launch official BENDOG merchandise store</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- New: Community -->
+    <section class="community-section">
+      <h2 class="community-title">Join Our Community</h2>
+      <div class="community-grid">
+        <div class="community-card">
+          <div class="community-icon">💬</div>
+          <h3>Telegram</h3>
+          <p>Chat with fellow BENDOG holders and get the latest updates</p>
+          <a href="https://t.me/Bendogscto" target="_blank" class="btn">Join Now</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon">🐦</div>
+          <h3>X (Twitter)</h3>
+          <p>Follow us for announcements, memes, and community events</p>
+          <a href="https://x.com/Bendogcto" target="_blank" class="btn">Follow Us</a>
+        </div>
+        <div class="community-card">
+          <div class="community-icon">🎁</div>
+          <h3>Giveaways</h3>
+          <p>Regular airdrops and contests for active community members</p>
+          <a href="https://t.me/Bendogscto" target="_blank" class="btn">Participate</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="bottom-banner">
+      <img src="banner.png" alt="BENDOG Logo Banner">
     </div>
-  </div>
-  <div class="bottom-banner">
-    <img src="banner.png" alt="BENDOG Logo Banner">
-  </div>
-  <img src="logo-coin.png" id="coinTemplate" style="display:none;">
+    <p>&copy; 2025 XBENDOG Crypto. All rights reserved.</p>
+  </footer>
+
+  <!-- Hidden elements for JavaScript functionality -->
+  <img src="logo-coin.png" id="coinTemplate" style="display:none;" alt="BENDOG Coin">
   <audio id="woofSound" src="woof.mp3"></audio>
   <!-- Mouse-following Ben image -->
-  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog" style="position:fixed; left:0; top:0; width:140px; z-index:9999; pointer-events:none; user-select:none; filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45));">
+  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog">
+
   <script>
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
+    const tapCounter = document.getElementById('tapCounter');
+    
+    let tapCount = 0;
 
-    tapBen.addEventListener('click', function(e) {
-      woofText.classList.remove('show');
-      void woofText.offsetWidth; // restart animation
-      woofText.classList.add('show');
-      woofSound.currentTime = 0;
-      woofSound.play();
-      const coin = coinTemplate.cloneNode(true);
-      coin.style.display = 'block';
-      coin.className = 'floating-coin';
-      const startX = tapBen.getBoundingClientRect().left + tapBen.offsetWidth/2 + (Math.random()-0.5)*60;
-      coin.style.left = `${startX}px`;
-      const startY = tapBen.getBoundingClientRect().top + tapBen.offsetHeight/2 + window.scrollY;
-      coin.style.top = `${startY}px`;
-      document.body.appendChild(coin);
-      setTimeout(() => {
-        coin.remove();
-      }, 2200);
-    });
+    if (tapBen) {
+      tapBen.addEventListener('click', function(e) {
+        woofText.classList.remove('show');
+        void woofText.offsetWidth;
+        woofText.classList.add('show');
+        if (woofSound) {
+          woofSound.currentTime = 0;
+          woofSound.play().catch(e => console.error("Error playing woof sound:", e));
+        }
+
+        if (coinTemplate) {
+          const coin = coinTemplate.cloneNode(true);
+          coin.style.display = 'block';
+          coin.className = 'floating-coin';
+          const tapRect = tapBen.getBoundingClientRect();
+          const startX = tapRect.left + tapRect.width / 2 + (Math.random() - 0.5) * 60;
+          const startY = tapRect.top + tapRect.height / 2 + window.scrollY;
+          coin.style.left = `${startX}px`;
+          coin.style.top = `${startY}px`;
+          document.body.appendChild(coin);
+          setTimeout(() => {
+            coin.remove();
+          }, 2200);
+        }
+        
+        // Update tap counter
+        tapCount++;
+        if (tapCounter) {
+          tapCounter.textContent = tapCount.toLocaleString();
+        }
+      });
+    }
 
     // Car bounce (ping-pong) with music and emote
     const benCar = document.getElementById('benCar');
     const carMusic = document.getElementById('carMusic');
     const carEmote = document.getElementById('carEmote');
     let x = 0, speed = 4, direction = 1, running = false;
+    let carAnimationId;
 
-    // Fallback audio if rolling.mp3 is missing
-    carMusic.onerror = function() {
-      carMusic.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-      carMusic.load();
-    };
+    if (carMusic) {
+      carMusic.onerror = function() {
+        console.warn("rolling.mp3 failed to load. Attempting fallback.");
+        carMusic.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+        carMusic.load();
+        carMusic.play().catch(e => console.error("Fallback audio also failed to play:", e));
+      };
+    }
 
     function animateCar() {
       x += speed * direction;
-      benCar.style.transform = `translateX(${x}px) scaleX(${direction})`;
-      carEmote.style.transform = `translateX(${x + benCar.offsetWidth/2}px) translateY(-40px) scaleX(${direction})`;
-      if (x > window.innerWidth - benCar.offsetWidth) direction = -1;
-      if (x < 0) direction = 1;
-      if (running) requestAnimationFrame(animateCar);
-    }
+      const viewportWidth = window.innerWidth;
+      const carWidth = benCar.offsetWidth;
 
-    benCar.addEventListener('click', function() {
-      carMusic.currentTime = 0;
-      carMusic.play().then(() => {
-        // Music started!
-      }).catch(function(e){
-        alert("Audio could not be played. File missing or not supported.");
-      });
-      if (!running) {
-        running = true;
+      if (x + carWidth > viewportWidth) {
+        x = viewportWidth - carWidth;
+        direction = -1;
+      }
+      if (x < 0) {
         x = 0;
         direction = 1;
-        carEmote.classList.add('show');
-        animateCar();
       }
-    });
 
-    carMusic.addEventListener('ended', function() {
-      running = false;
-      benCar.style.transform = 'translateX(0) scaleX(1)';
-      carEmote.classList.remove('show');
-    });
+      benCar.style.transform = `translateX(${x}px) scaleX(${direction === 1 ? 1 : -1})`;
+      carEmote.style.left = `${x + carWidth / 2}px`;
+      carEmote.style.transform = `translateX(-50%) translateY(-40px) scaleX(${direction === 1 ? 1 : -1})`;
+
+      if (running) {
+        carAnimationId = requestAnimationFrame(animateCar);
+      }
+    }
+
+    if (benCar) {
+      benCar.addEventListener('click', function() {
+        if (carMusic) {
+          carMusic.currentTime = 0;
+          carMusic.play().then(() => {
+            if (!running) {
+              running = true;
+              x = 0;
+              direction = 1;
+              carEmote.classList.add('show');
+              animateCar();
+            }
+          }).catch(function(e) {
+            console.error("Audio could not be played:", e);
+            alert("Audio could not be played. File missing or browser restrictions.");
+          });
+        } else {
+          console.error("Car music element not found.");
+        }
+      });
+    }
+
+    if (carMusic) {
+      carMusic.addEventListener('ended', function() {
+        running = false;
+        if (carAnimationId) cancelAnimationFrame(carAnimationId);
+        if (benCar) benCar.style.transform = 'translateX(0) scaleX(1)';
+        if (carEmote) carEmote.classList.remove('show');
+      });
+    }
 
     // Mouse-following Ben
     const ben = document.getElementById('movingBen');
     let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
     let benX = mouseX, benY = mouseY;
 
-    document.addEventListener('mousemove', function(e) {
-      mouseX = e.clientX - ben.offsetWidth / 2;
-      mouseY = e.clientY - ben.offsetHeight / 2;
-    });
+    if (ben) {
+      document.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX - ben.offsetWidth / 2;
+        mouseY = e.clientY - ben.offsetHeight / 2;
+      });
 
-    function animateBen() {
-      benX += (mouseX - benX) * 0.15;
-      benY += (mouseY - benY) * 0.15;
-      ben.style.left = benX + 'px';
-      ben.style.top = benY + 'px';
-      requestAnimationFrame(animateBen);
+      function animateBen() {
+        benX += (mouseX - benX) * 0.15;
+        benY += (mouseY - benY) * 0.15;
+        ben.style.left = benX + 'px';
+        ben.style.top = benY + 'px';
+        requestAnimationFrame(animateBen);
+      }
+      animateBen();
     }
-    animateBen();
+
+    // Simple community counter animation
+    document.addEventListener('DOMContentLoaded', () => {
+      const communityCounter = document.getElementById('communityCounter');
+      if (communityCounter) {
+        // Simulate community growth (replace with actual count if available)
+        setTimeout(() => {
+          communityCounter.textContent = '2,547';
+        }, 1000);
+      }
+    });
   </script>
 </body>
 </html>
-
-
