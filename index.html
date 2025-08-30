@@ -1,381 +1,178 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <title>BENDOG Crypto</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="XBENDOG — Tap Ben, collect coins, swap OKB → XBENDOG on Dyorswap" />
-  <link rel="icon" href="smalllogo-coin.png" type="image/png" sizes="32x32" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --primary-blue: #229ED9;
-      --primary-blue-r: 34; --primary-blue-g: 158; --primary-blue-b: 217;
-      --bg-alpha: rgba(255,255,255,0.08);
-      --text-glow: 0 2px 8px rgba(34,158,217,0.95);
-    }
-    html,body{height:100%;margin:0;font-family:'Montserrat',Arial,sans-serif;background:#050617;color:#fff;overflow-x:hidden}
-    body { background: url('moonben.png') center/cover no-repeat fixed; animation: bgmove 20s linear infinite alternate; }
-    @keyframes bgmove {0%{background-position:50% 100%}100%{background-position:50% 0%}}
-    .container { max-width:1200px; margin:0 auto; padding:18px; }
-
-    /* header / socials */
-    .banner { display:flex;align-items:center;justify-content:center;padding:36px 0;background: rgba(255,255,255,0.03); border-radius:12px; }
-    .banner img{max-width:420px;width:100%;height:auto;display:block}
-    .socials { display:flex;justify-content:center;gap:18px;margin:16px 0 }
-    .socials a{width:48px;height:48px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(0,0,0,0.2)}
-    .socials img, .socials svg { width:28px;height:28px;display:block }
-
-    /* Tap Ben */
-    .main-content { display:flex; align-items:center; justify-content:center; min-height:48vh; margin-top:18px }
-    .center-content { text-align:center }
-    .tap-ben { width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.18);backdrop-filter: blur(2px) }
-    .tap-ben img{width:180px;height:180px;border-radius:50%;box-shadow:0 0 32px rgba(34,158,217,0.6);user-select:none;pointer-events:none}
-    .woof{position:absolute;top:-40px;left:50%;transform:translateX(-50%);font-weight:900;font-size:2rem;color:#fff;text-shadow:var(--text-glow);opacity:0;pointer-events:none}
-    .woof.show{animation:woofpop .7s forwards}
-    @keyframes woofpop {0%{opacity:0;transform:translateY(0) scale(.7)}30%{opacity:1;transform:translateY(-10px) scale(1.1)}100%{opacity:0;transform:translateY(-40px) scale(.8)}}
-    .ca-section{display:inline-block;padding:8px 14px;border-radius:10px;background:rgba(0,0,0,0.18);font-family:monospace;margin-top:10px;text-shadow:0 2px 8px var(--primary-blue)}
-
-    /* SWAP SECTION: preview card + modal */
-    .swap-section{margin:28px auto;padding:20px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.015));box-shadow:0 6px 28px rgba(0,0,0,0.4);max-width:980px}
-    .swap-section h2 { margin:0 0 8px 0;font-size:1.6rem;letter-spacing:0.4px }
-    .swap-section p { margin:0 0 14px 0;color:rgba(255,255,255,0.9) }
-
-    .swap-preview { background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,0.2); position:relative; min-height:420px }
-    .iframe-loader { position:absolute; inset:0; display:flex;align-items:center;justify-content:center; background:linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02)) }
-    .spinner { width:48px;height:48px;border-radius:50%;border:4px solid rgba(0,0,0,0.08);border-top-color:var(--primary-blue); animation:spin .9s linear infinite }
-    @keyframes spin { to { transform: rotate(360deg) } }
-
-    .swap-preview iframe{ width:100%; height:520px; border:0; display:block; background:#fff; }
-    .swap-actions{ display:flex;gap:10px;align-items:center;justify-content:center;margin-top:12px }
-    .swap-btn, .swap-open-popup { display:inline-block;padding:10px 16px;border-radius:10px;background:var(--primary-blue); color:#fff;text-decoration:none;font-weight:700;border:none;cursor:pointer }
-    .swap-btn.secondary{ background:transparent;border:1px solid rgba(255,255,255,0.12) }
-
-    /* fallback box */
-    .swap-fallback { display:none;margin-top:12px;padding:14px;border-radius:10px;background:rgba(0,0,0,0.2); text-align:center }
-    .swap-fallback.show { display:block }
-
-    /* modal full-screen iframe */
-    .modal { position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.65);z-index:9999 }
-    .modal.open{ display:flex }
-    .modal-inner { width:95%; max-width:1200px;height:90%; background:#000;border-radius:10px;overflow:hidden; position:relative;box-shadow:0 18px 60px rgba(0,0,0,0.6) }
-    .modal-inner iframe{ width:100%; height:100%; border:0; background:#fff }
-    .modal-close { position:absolute; right:8px; top:8px; z-index:10; background:rgba(255,255,255,0.06);border:0;color:#fff;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700 }
-
-    /* responsive */
-    @media (max-width:900px){
-      .swap-preview iframe{height:420px}
-      .modal-inner{height:92%}
-    }
-    @media (max-width:600px){
-      .swap-preview iframe{height:360px}
-      .tap-ben{width:160px;height:160px}
-      .tap-ben img{width:120px;height:120px}
+      --white: #fff;
+      --shadow: 0 4px 24px rgba(34,158,217,0.4);
     }
 
-    /* small footer */
-    footer{margin:30px 0;text-align:center;color:rgba(255,255,255,0.8)}
-    a { color:inherit }
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: url('moonben.png') center / cover no-repeat fixed;
+      animation: bgmove 20s linear infinite alternate;
+      color: #fff;
+    }
+
+    @keyframes bgmove {
+      0% { background-position: 50% 100%; }
+      100% { background-position: 50% 0%; }
+    }
+
+    header .banner {
+      display: flex; justify-content: center;
+      padding: 30px 0; background: rgba(255,255,255,0.05);
+    }
+    header .banner img { max-width: 320px; width: 100%; }
+
+    .socials { display: flex; justify-content: center; gap: 16px; margin: 20px 0; }
+    .socials a {
+      background: #fff; border-radius: 50%;
+      width: 48px; height: 48px; display: flex; justify-content: center; align-items: center;
+    }
+    .socials img { max-width: 28px; }
+
+    /* Tap Ben section */
+    .tap-ben {
+      width: 200px; height: 200px; border-radius: 50%; background: rgba(255,255,255,0.1);
+      display: flex; justify-content: center; align-items: center;
+      margin: 30px auto; cursor: pointer; box-shadow: var(--shadow);
+    }
+    .tap-ben img { width: 160px; border-radius: 50%; box-shadow: var(--shadow); }
+    .woof { position: absolute; transform: translateY(-60px); font-size: 2rem; font-weight: 900;
+            text-shadow: 0 2px 8px var(--primary-blue); opacity: 0; }
+
+    .woof.show { animation: woofpop 0.7s forwards; }
+    @keyframes woofpop {
+      0% { opacity: 0; transform: translateY(-10px) scale(0.8);}
+      50% { opacity: 1; transform: translateY(-40px) scale(1.1);}
+      100% { opacity: 0; transform: translateY(-80px) scale(0.9);}
+    }
+
+    .ca-section {
+      display: inline-block; background: rgba(0,0,0,0.2); padding: 6px 12px;
+      border-radius: 8px; font-family: monospace; margin-top: 10px;
+    }
+
+    /* Dyorswap section */
+    .swap-section {
+      margin: 50px auto; padding: 20px; max-width: 1000px;
+      background: rgba(255,255,255,0.08); border-radius: 16px;
+      box-shadow: var(--shadow); text-align: center;
+    }
+    .swap-section h2 { margin: 0 0 10px; font-size: 1.8rem; text-shadow: var(--shadow); }
+    .swap-section p { margin: 0 0 20px; }
+
+    .swap-box {
+      background: #fff; border-radius: 12px; overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.25);
+    }
+    .swap-box iframe {
+      width: 100%; height: 650px; border: 0; display: block;
+    }
+
+    /* About */
+    .about-section {
+      margin: 50px auto; max-width: 900px;
+      background: rgba(255,255,255,0.1); border-radius: 20px;
+      padding: 24px; text-align: center; box-shadow: var(--shadow);
+    }
+
+    footer { text-align: center; color: rgba(255,255,255,0.8); margin: 40px 0; }
+
+    /* Floating Ben */
+    #movingBen { position: fixed; width: 120px; pointer-events: none; z-index: 9999; }
+
+    @media(max-width:600px){
+      .swap-box iframe { height: 500px; }
+      .tap-ben { width: 140px; height: 140px; }
+      .tap-ben img { width: 110px; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="banner" role="banner">
-        <img src="banner.png" alt="BENDOG Logo Banner" loading="lazy">
-      </div>
-      <div class="socials" aria-hidden="false" role="navigation" aria-label="social links">
-        <a href="https://t.me/Bendogscto" target="_blank" rel="noopener noreferrer" title="Telegram"><svg viewBox="0 0 240 240" fill="none" width="28" height="28"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg></a>
-        <a href="https://x.com/Bendogcto" target="_blank" rel="noopener noreferrer" title="X (Twitter)"><svg viewBox="0 0 1200 1227" fill="none" width="28" height="28"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg></a>
-        <a href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" rel="noopener noreferrer" title="Dyorswap"><img src="Dyorswap.png" alt="Dyorswap logo"></a>
-      </div>
-    </header>
-
-    <!-- TAP BEN -->
-    <main>
-      <section class="main-content" aria-labelledby="tap-title">
-        <div class="center-content">
-          <div class="tap-ben" id="tapBen" role="button" aria-pressed="false" tabindex="0" title="Tap Ben">
-            <span class="woof" id="woofText">WOOF!</span>
-            <img src="muscleben.png" id="benImage" alt="Tap Ben the Dog">
-          </div>
-          <div style="margin-top:8px;color:#fff;text-shadow:0 2px 8px rgba(34,158,217,0.9);">Tap Ben for a WOOF!</div>
-          <div class="ca-section" aria-label="Contract Address">
-            CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2
-          </div>
-        </div>
-      </section>
-
-      <!-- SWAP: Dyorswap Launch Info embed + modal -->
-      <section class="swap-section" aria-labelledby="swap-title">
-        <h2 id="swap-title">Launch & Swap XBENDOG on Dyorswap</h2>
-        <p>View token details and swap XBENDOG directly on Dyorswap. Connect a wallet to X-Layer to swap.</p>
-
-        <div class="swap-preview" id="swapPreview">
-          <!-- Loader overlay shown until iframe 'load' event -->
-          <div class="iframe-loader" id="swapLoader">
-            <div>
-              <div class="spinner" aria-hidden="true"></div>
-              <div style="text-align:center;margin-top:8px;color:rgba(0,0,0,0.6)">Loading swap interface…</div>
-            </div>
-          </div>
-
-          <!-- Preview iframe (attempt to load embed) -->
-          <iframe
-            id="previewIframe"
-            title="Dyorswap Launch Info & Swap for XBENDOG"
-            src="about:blank"
-            loading="lazy"
-            allow="clipboard-write; fullscreen; autoplay; payment"
-            referrerpolicy="no-referrer-when-downgrade"
-          ></iframe>
-        </div>
-
-        <div class="swap-actions" style="margin-top:12px">
-          <button class="swap-btn" id="openModalBtn" aria-controls="swapModal">Open Swap in page</button>
-          <button class="swap-btn secondary" id="openPopupBtn">Open in popup</button>
-          <a class="swap-btn secondary" id="openNewTab" href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" rel="noopener noreferrer">Open on Dyorswap</a>
-        </div>
-
-        <div class="swap-fallback" id="swapFallback" role="alert" aria-hidden="true">
-          <strong>Embed unavailable.</strong>
-          <div style="margin-top:8px">If the swap preview doesn't load here you can open the Dyorswap page directly:</div>
-          <div style="margin-top:10px">
-            <a class="swap-btn" href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" rel="noopener noreferrer">Open Launch Info & Swap →</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- Modal (full-screen) -->
-      <div class="modal" id="swapModal" aria-hidden="true" role="dialog" aria-label="Dyorswap swap dialog">
-        <div class="modal-inner" role="document">
-          <button class="modal-close" id="modalCloseBtn" aria-label="Close swap">Close ✕</button>
-          <iframe id="modalIframe"
-                  title="Dyorswap - full view"
-                  src="about:blank"
-                  allow="clipboard-write; fullscreen; autoplay; payment"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-      </div>
-
-      <!-- About / Car -->
-      <section class="about-section" style="margin-top:32px">
-        <div style="text-align:center;margin-bottom:22px">
-          <div style="font-weight:900;font-size:1.6rem;text-shadow:var(--text-glow)">Welcome to Bendog Crypto!</div>
-          <div style="font-weight:900;font-size:1.15rem;margin-top:6px">XBENDOG</div>
-        </div>
-
-        <div style="display:flex;justify-content:center;align-items:center;flex-direction:column">
-          <div class="car-container" style="width:100%;display:flex;justify-content:center;position:relative;margin-bottom:18px">
-            <span id="carEmote" style="position:absolute;left:50%;top:-40px;transform:translateX(-50%);font-size:2rem;opacity:0">🚗💨</span>
-            <img id="benCar" src="bugatiben-removebg.png" alt="Ben the Dog in Car" style="width:320px;max-width:90vw;cursor:pointer;filter:drop-shadow(0 8px 28px rgba(34,158,217,0.35))">
-            <audio id="carMusic" src="rolling.mp3" preload="auto"></audio>
-          </div>
-
-          <div style="max-width:1100px;background:rgba(255,255,255,0.08);padding:24px;border-radius:16px;text-shadow:0 2px 8px var(--primary-blue);">
-            <div style="font-size:1.4rem;font-weight:700">The most fun and community-driven meme coin on the blockchain.</div>
-            <div style="margin-top:8px">Tap Ben, collect coins, and join our growing community.</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <div style="margin-top:30px"><img src="banner.png" alt="BENDOG logo" style="max-width:360px;width:100%"></div>
-      <p style="margin-top:10px">&copy; <span id="year"></span> XBENDOG Crypto. All rights reserved.</p>
-    </footer>
+<header>
+  <div class="banner"><img src="banner.png" alt="BENDOG Logo"></div>
+  <div class="socials">
+    <a href="https://t.me/Bendogscto" target="_blank"><img src="telegram.png" alt="Telegram"></a>
+    <a href="https://x.com/Bendogcto" target="_blank"><img src="xlogo.png" alt="X"></a>
+    <a href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank"><img src="Dyorswap.png" alt="Dyorswap"></a>
   </div>
+</header>
 
-  <!-- hidden resources -->
-  <img id="coinTemplate" src="logo-coin.png" alt="BENDOG coin" style="display:none" />
-  <audio id="woofSound" src="woof.mp3" preload="auto"></audio>
-  <img id="movingBen" src="moonben-removebg.png" alt="Ben the Dog following cursor" style="position:fixed;left:0;top:0;width:140px;pointer-events:none;z-index:9998;display:block">
+<main>
+  <!-- Tap Ben -->
+  <section style="text-align:center; position: relative;">
+    <div class="tap-ben" id="tapBen">
+      <span class="woof" id="woofText">WOOF!</span>
+      <img src="muscleben.png" alt="Tap Ben">
+    </div>
+    <div style="font-size:1.2rem;">Tap Ben for a WOOF!</div>
+    <div class="ca-section">CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2</div>
+  </section>
 
-  <script>
-    // constants
-    const DYOR_URL = 'https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196';
-    const PREVIEW_IFRAME = document.getElementById('previewIframe');
-    const MODAL_IFRAME = document.getElementById('modalIframe');
-    const LOADER = document.getElementById('swapLoader');
-    const FALLBACK = document.getElementById('swapFallback');
-    const OPEN_MODAL_BTN = document.getElementById('openModalBtn');
-    const OPEN_POPUP_BTN = document.getElementById('openPopupBtn');
-    const OPEN_NEWTAB = document.getElementById('openNewTab');
-    const MODAL = document.getElementById('swapModal');
-    const MODAL_CLOSE = document.getElementById('modalCloseBtn');
+  <!-- SWAP -->
+  <section class="swap-section">
+    <h2>Swap OKB → XBENDOG</h2>
+    <p>Use Dyorswap to view launch info and instantly swap OKB to XBENDOG on X-Layer</p>
+    <div class="swap-box">
+      <iframe src="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196"
+              title="Swap OKB to XBENDOG on Dyorswap"></iframe>
+    </div>
+    <p style="margin-top: 12px">
+      <a href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196"
+         target="_blank" style="color:#fff; font-weight:700; text-decoration:underline;">
+        Open directly on Dyorswap →
+      </a>
+    </p>
+  </section>
 
-    // helper to center popup
-    function openCenteredPopup(url, name, w, h) {
-      const dualScreenLeft = window.screenLeft !== undefined ? window.screenLeft : screen.left;
-      const dualScreenTop = window.screenTop !== undefined ? window.screenTop : screen.top;
-      const width = window.innerWidth || document.documentElement.clientWidth || screen.width;
-      const height = window.innerHeight || document.documentElement.clientHeight || screen.height;
-      const left = ((width - w) / 2) + dualScreenLeft;
-      const top = ((height - h) / 2) + dualScreenTop;
-      const features = `scrollbars=yes, width=${w}, height=${h}, top=${top}, left=${left}`;
-      const newWin = window.open(url, name, features);
-      if (newWin) newWin.focus();
-      return newWin;
-    }
+  <!-- About -->
+  <section class="about-section">
+    <h3>About XBENDOG</h3>
+    <p>The most fun and community-driven meme coin on the blockchain.<br>
+    Tap Ben, collect coins, join the community, and now swap directly with Dyorswap!</p>
+  </section>
+</main>
 
-    // iframe loading + fallback detection
-    let previewLoaded = false;
-    function startPreviewLoad() {
-      // set src (delayed on purpose to ensure event listeners attach)
-      PREVIEW_IFRAME.src = DYOR_URL;
+<footer>
+  <img src="banner.png" alt="BENDOG Footer Logo" style="max-width:200px; display:block; margin:0 auto 10px;">
+  <p>&copy; 2025 XBENDOG Crypto</p>
+</footer>
 
-      // onload event
-      PREVIEW_IFRAME.onload = () => {
-        previewLoaded = true;
-        LOADER.style.display = 'none';
-        FALLBACK.classList.remove('show');
-        FALLBACK.setAttribute('aria-hidden', 'true');
-      };
+<!-- Hidden for JS -->
+<img src="logo-coin.png" id="coinTemplate" style="display:none;">
+<audio id="woofSound" src="woof.mp3"></audio>
+<img src="moonben-removebg.png" id="movingBen" alt="Moving Ben">
 
-      // fallback: if not loaded after 8 seconds, show fallback UI
-      setTimeout(() => {
-        if (!previewLoaded) {
-          LOADER.style.display = 'none';
-          FALLBACK.classList.add('show');
-          FALLBACK.setAttribute('aria-hidden', 'false');
-          // hide preview iframe to avoid white empty box (some browsers leave a blocked iframe blank)
-          PREVIEW_IFRAME.style.display = 'none';
-          console.warn('Dyorswap preview did not load within timeout — showing fallback.');
-        }
-      }, 8000);
-    }
+<script>
+  // Tap Ben
+  const tapBen = document.getElementById('tapBen');
+  const woofText = document.getElementById('woofText');
+  const woofSound = document.getElementById('woofSound');
+  const coinTemplate = document.getElementById('coinTemplate');
+  tapBen.addEventListener('click', () => {
+    woofText.classList.remove('show'); void woofText.offsetWidth; woofText.classList.add('show');
+    woofSound.currentTime = 0; woofSound.play().catch(()=>{});
+    const coin = coinTemplate.cloneNode(true);
+    coin.style.display='block'; coin.className='floating-coin';
+    coin.style.position='fixed'; coin.style.width='48px'; coin.style.left='50%'; coin.style.top='50%';
+    document.body.appendChild(coin); setTimeout(()=>coin.remove(),2000);
+  });
 
-    // open modal (embed) or fallback to new tab
-    OPEN_MODAL_BTN.addEventListener('click', function () {
-      if (previewLoaded) {
-        // ensure modal iframe has src (only set once to reduce re-loads)
-        if (!MODAL_IFRAME.src || MODAL_IFRAME.src === 'about:blank') MODAL_IFRAME.src = DYOR_URL;
-        MODAL.classList.add('open');
-        MODAL.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-      } else {
-        // preview not available — open new tab instead
-        window.open(DYOR_URL, '_blank', 'noopener,noreferrer');
-      }
-    });
-
-    // open popup centered as alternate fallback
-    OPEN_POPUP_BTN.addEventListener('click', function () {
-      openCenteredPopup(DYOR_URL, 'dyorswap_window', 1100, 800);
-    });
-
-    // modal close
-    function closeModal() {
-      MODAL.classList.remove('open');
-      MODAL.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      // Keep modal iframe loaded to preserve session if user reopens. If you prefer to unload, uncomment:
-      // MODAL_IFRAME.src = 'about:blank';
-    }
-    MODAL_CLOSE.addEventListener('click', closeModal);
-
-    // close when clicking overlay (but not when clicking inner content)
-    MODAL.addEventListener('click', function (e) {
-      if (e.target === MODAL) closeModal();
-    });
-
-    // close with ESC
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && MODAL.classList.contains('open')) closeModal();
-    });
-
-    // initialize preview loading
-    startPreviewLoad();
-
-    // --- existing interactive features (Tap Ben, Car, Mouse follow) --- //
-    // Tap Ben
-    (function() {
-      const tapBen = document.getElementById('tapBen');
-      const woofText = document.getElementById('woofText');
-      const woofSound = document.getElementById('woofSound');
-      const coinTemplate = document.getElementById('coinTemplate');
-      if (!tapBen) return;
-      tapBen.addEventListener('click', function () {
-        woofText.classList.remove('show');
-        void woofText.offsetWidth;
-        woofText.classList.add('show');
-        if (woofSound) {
-          woofSound.currentTime = 0;
-          woofSound.play().catch(()=>{ /* ignore autoplay blocked */ });
-        }
-        if (coinTemplate) {
-          const coin = coinTemplate.cloneNode(true);
-          coin.style.display = 'block';
-          coin.className = 'floating-coin';
-          const r = tapBen.getBoundingClientRect();
-          const startX = r.left + r.width/2 + (Math.random()-0.5)*60;
-          const startY = r.top + r.height/2 + window.scrollY;
-          coin.style.left = `${startX}px`;
-          coin.style.top = `${startY}px`;
-          document.body.appendChild(coin);
-          setTimeout(()=>coin.remove(), 2200);
-        }
-      });
-      // keyboard accessible: Enter/Space
-      tapBen.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tapBen.click(); }
-      });
-    })();
-
-    // Car animation with music
-    (function(){
-      const benCar = document.getElementById('benCar');
-      const carMusic = document.getElementById('carMusic');
-      const carEmote = document.getElementById('carEmote');
-      if (!benCar) return;
-      let x=0, speed=4, dir=1, running=false, rafId=null;
-      function animateCar() {
-        x += speed * dir;
-        const viewport = window.innerWidth;
-        const w = benCar.offsetWidth;
-        if (x + w > viewport) { x = viewport - w; dir = -1; }
-        if (x < 0) { x = 0; dir = 1; }
-        benCar.style.transform = `translateX(${x}px) scaleX(${dir===1?1:-1})`;
-        if (carEmote) {
-          carEmote.style.left = `${x + w/2}px`;
-          carEmote.style.transform = `translateX(-50%) translateY(-40px) scaleX(${dir===1?1:-1})`;
-        }
-        if (running) rafId = requestAnimationFrame(animateCar);
-      }
-      benCar.addEventListener('click', function () {
-        if (!carMusic) return;
-        carMusic.currentTime = 0;
-        carMusic.play().then(()=> {
-          if (!running) { running = true; x = 0; dir = 1; if (carEmote) carEmote.style.opacity = 1, carEmote.classList.add('show'); animateCar(); }
-        }).catch(()=>{ alert('Audio could not be played (autoplay restrictions or missing file).'); });
-      });
-      if (carMusic) {
-        carMusic.addEventListener('ended', function(){
-          running = false;
-          if (rafId) cancelAnimationFrame(rafId);
-          benCar.style.transform = 'translateX(0) scaleX(1)';
-          if (carEmote) carEmote.classList.remove('show');
-        });
-        carMusic.onerror = function(){
-          // fallback source if you want
-          console.warn('car music failed to load.');
-        };
-      }
-    })();
-
-    // Mouse-following ben
-    (function(){
-      const ben = document.getElementById('movingBen');
-      if (!ben) return;
-      let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2, benX = mouseX, benY = mouseY;
-      document.addEventListener('mousemove', function(e){ mouseX = e.clientX - ben.offsetWidth/2; mouseY = e.clientY - ben.offsetHeight/2; });
-      function loop(){ benX += (mouseX - benX)*0.12; benY += (mouseY - benY)*0.12; ben.style.left = benX + 'px'; ben.style.top = benY + 'px'; requestAnimationFrame(loop); }
-      loop();
-    })();
-
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  // Mouse-follow Ben
+  const ben = document.getElementById('movingBen'); let mouseX=200, mouseY=200, benX=200, benY=200;
+  document.addEventListener('mousemove',e=>{mouseX=e.clientX-60;mouseY=e.clientY-60;});
+  function animateBen(){ benX += (mouseX-benX)*0.1; benY += (mouseY-benY)*0.1; ben.style.left=benX+'px'; ben.style.top=benY+'px'; requestAnimationFrame(animateBen);}
+  animateBen();
+</script>
 </body>
 </html>
