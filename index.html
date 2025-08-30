@@ -203,6 +203,60 @@
       user-select: all;
     }
 
+    /* Swap Section Styles */
+    .swap-section {
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 20px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.2);
+      text-align: center;
+      color: #fff;
+      text-shadow: var(--text-glow-shadow);
+    }
+    .swap-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      font-weight: 900;
+    }
+    .swap-container {
+      position: relative;
+      min-height: 500px;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .swap-container iframe {
+      width: 100%;
+      height: 500px;
+      border: none;
+    }
+    .swap-fallback {
+      display: none;
+      padding: 20px;
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      margin-top: 10px;
+    }
+    .swap-fallback.show {
+      display: block;
+    }
+    .swap-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--primary-blue);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .swap-btn:hover {
+      background: #1a73e8;
+    }
+
     /* About Section */
     .about-section { /* Now a <section> tag */
       margin: 40px auto 0 auto;
@@ -369,7 +423,7 @@
       display: block;
     }
 
-    /* Media Queries for Responsiveness */
+    /* Media Queries for Responsiveness (Updated to include Swap Section) */
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
@@ -380,6 +434,8 @@
       .welcome-title { white-space: normal; }
       .car-container { margin: 24px 0 24px 0; }
       #benCar { width: 200px; }
+      .swap-section { max-width: 95vw; padding: 16px; }
+      .swap-container iframe { height: 400px; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
@@ -394,6 +450,9 @@
       #benCar { width: 120px; }
       #movingBen { width: 80px; }
       #carEmote { font-size: 1.5rem; top: -28px; }
+      .swap-section h2 { font-size: 1.4rem; }
+      .swap-container { min-height: 400px; }
+      .swap-container iframe { height: 350px; }
     }
   </style>
 </head>
@@ -439,6 +498,29 @@
       </div>
     </div>
 
+    <!-- New Direct Swap Section for Dyorswap -->
+    <section class="swap-section" aria-label="Swap XBENDOG on Dyorswap">
+      <h2>Swap XBENDOG Now</h2>
+      <p>Trade directly on Dyorswap with XBENDOG pre-selected. Connect your wallet to get started!</p>
+      <div class="swap-container">
+        <iframe 
+          src="https://dyorswap.org/swap?tokenOut=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" 
+          title="Dyorswap XBENDOG Swap Interface"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+        <div class="swap-fallback" id="swapFallback">
+          <p>If the swap interface doesn't load, click below to open Dyorswap.</p>
+          <a href="https://dyorswap.org/swap?tokenIn=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" 
+             class="swap-btn" 
+             target="_blank" 
+             rel="noopener noreferrer">
+            Swap XBENDOG on Dyorswap
+          </a>
+        </div>
+      </div>
+    </section>
+
     <section class="about-section"> <!-- Changed to <section> for semantic grouping -->
       <div class="welcome-message">
         <span class="welcome-title">Welcome to Bendog Crypto!</span>
@@ -478,6 +560,7 @@
   <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog character following cursor">
 
   <script defer>
+    // Existing Tap Ben, Car, and Mouse Follow Scripts (unchanged)
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
@@ -608,7 +691,34 @@
       }
       animateBen();
     }
+
+    // New: Swap Section JavaScript (Iframe Handling and Fallback)
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.querySelector('.swap-container iframe');
+      const fallback = document.getElementById('swapFallback');
+
+      if (iframe && fallback) {
+        // Check if iframe loads successfully (timeout after 5 seconds)
+        const iframeTimeout = setTimeout(() => {
+          iframe.style.display = 'none';
+          fallback.classList.add('show');
+          console.warn('Dyorswap iframe failed to load; showing fallback.');
+        }, 5000);
+
+        iframe.onload = () => {
+          clearTimeout(iframeTimeout);
+          iframe.style.display = 'block';
+          fallback.classList.remove('show');
+        };
+
+        iframe.onerror = () => {
+          clearTimeout(iframeTimeout);
+          iframe.style.display = 'none';
+          fallback.classList.add('show');
+          console.error('Dyorswap iframe error; showing fallback.');
+        };
+      }
+    });
   </script>
 </body>
 </html>
-
