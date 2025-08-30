@@ -5,42 +5,9 @@
   <title>BENDOG Crypto</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" href="smalllogo-coin.png" sizes="32x32">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png"> <!-- For iOS devices -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
-    /* CSS Variables for easy color changes */
-    :root {
-      --primary-blue: #229ED9;
-      --primary-blue-r: 34;
-      --primary-blue-g: 158;
-      --primary-blue-b: 217;
-      --text-glow-shadow: 0 2px 8px var(--primary-blue), 0 0 2px #000;
-    }
-
-    /* Skip Link for Accessibility */
-    .skip-link {
-        position: absolute;
-        left: -9999px;
-        top: auto;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        z-index: -999;
-    }
-    .skip-link:focus {
-        left: 0;
-        top: 0;
-        width: auto;
-        height: auto;
-        padding: 10px;
-        background-color: var(--primary-blue);
-        color: white;
-        text-decoration: none;
-        z-index: 10000;
-        text-align: center;
-    }
-
-    /* Base Styles */
+    /* ... (your existing CSS, with yellow -> blue color updates) ... */
     html, body {
       height: 100%;
       margin: 0;
@@ -48,10 +15,10 @@
       font-family: 'Montserrat', Arial, sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
-      scroll-behavior: smooth;
     }
     body {
       position: relative;
+      min-height: 100vh;
       background: url('moonben.png') center center / cover no-repeat fixed;
       animation: bgmove 20s linear infinite alternate;
     }
@@ -59,8 +26,6 @@
       0% { background-position: 50% 100%; }
       100% { background-position: 50% 0%; }
     }
-
-    /* Header Section */
     .banner {
       display: flex;
       align-items: center;
@@ -95,15 +60,13 @@
     }
     .socials a:hover {
       transform: scale(1.15) rotate(-8deg);
-      background: rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.12);
+      background: rgba(34,158,217,0.12); /* blue hover */
     }
     .socials img {
       width: 28px;
       height: 28px;
       display: block;
     }
-
-    /* Main Content - Tap Ben Section */
     .main-content {
       display: flex;
       align-items: center;
@@ -139,7 +102,7 @@
       overflow: hidden;
     }
     .tap-ben:active {
-      box-shadow: 0 2px 8px 0 var(--primary-blue);
+      box-shadow: 0 2px 8px 0 #229ED9;
     }
     .tap-ben img {
       width: 180px;
@@ -148,7 +111,7 @@
       user-select: none;
       pointer-events: none;
       border-radius: 50%;
-      box-shadow: 0 0 32px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.6);
+      box-shadow: 0 0 32px 0 rgba(34,158,217,0.6); /* blue glow */
       background: rgba(255,255,255,0.12);
     }
     .woof {
@@ -159,7 +122,7 @@
       font-size: 2.2rem;
       font-weight: bold;
       color: #fff;
-      text-shadow: var(--text-glow-shadow);
+      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s;
@@ -192,7 +155,7 @@
       margin: 10px 0 0 0;
       font-size: 1.1rem;
       color: #fff;
-      text-shadow: 0 2px 8px var(--primary-blue);
+      text-shadow: 0 2px 8px #229ED9;
       background: rgba(0,0,0,0.18);
       border-radius: 12px;
       padding: 8px 18px;
@@ -201,109 +164,19 @@
       font-family: monospace;
       user-select: all;
     }
-
-    /* --- SWAP SECTION (IMPROVED) --- */
-    .swap-section {
-      margin: 60px auto 0 auto;
-      max-width: 1200px;
-      background: rgba(255,255,255,0.18);
-      border-radius: 24px;
-      box-shadow: 0 4px 24px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.24);
-      padding: 32px 24px;
-      color: #fff;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .swap-title {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 24px;
-      color: #fff;
-      text-shadow: var(--text-glow-shadow);
-      text-align: center;
-    }
-    .swap-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 500px;
-    }
-    .swap-button {
-      background: linear-gradient(135deg, var(--primary-blue), #1a7bb3);
-      color: white;
-      text-decoration: none;
-      padding: 16px 32px;
-      border: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      text-align: center;
-    }
-    .swap-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.6);
-    }
-    .swap-button:active {
-      transform: translateY(0);
-    }
-    .swap-info {
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      padding: 20px;
-      font-size: 1rem;
-      line-height: 1.6;
-      text-align: center;
-      margin-top: 10px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .qr-code-wrapper {
-      background: white;
-      padding: 12px;
-      border-radius: 12px;
-      margin: 15px auto 0;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      display: inline-block;
-    }
-    .qr-code-wrapper img {
-      width: 150px;
-      height: 150px;
-      display: block;
-    }
-    .swap-info p {
-        margin: 0;
-        margin-bottom: 15px;
-    }
-
-    /* About Section */
     .about-section {
       margin: 40px auto 0 auto;
       max-width: 1200px;
       background: rgba(255,255,255,0.18);
       border-radius: 24px;
-      box-shadow: 0 2px 16px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.24);
+      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.24); /* blue box shadow */
       padding: 32px 24px;
       color: #fff;
       font-size: 1.25rem;
       line-height: 1.7;
       position: relative;
       z-index: 2;
-      text-shadow: 0 2px 8px var(--primary-blue);
+      text-shadow: 0 2px 8px #229ED9;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -324,7 +197,7 @@
       letter-spacing: 1px;
       margin-bottom: 10px;
       color: #fff;
-      text-shadow: var(--text-glow-shadow);
+      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
       font-family: 'Montserrat', Arial, sans-serif;
       white-space: nowrap;
       display: block;
@@ -334,7 +207,7 @@
       font-weight: 900;
       font-size: 2.1rem;
       letter-spacing: 2px;
-      text-shadow: var(--text-glow-shadow);
+      text-shadow: 0 2px 8px #229ED9, 0 0 2px #000;
       margin: 0 0 10px 0;
       display: inline-block;
     }
@@ -350,7 +223,7 @@
       max-width: 90vw;
       cursor: pointer;
       user-select: none;
-      filter: drop-shadow(0 4px 24px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.45));
+      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
       position: relative;
       will-change: transform;
       transition: filter 0.2s;
@@ -387,7 +260,7 @@
       gap: 40px;
       background: rgba(255,255,255,0.13);
       border-radius: 20px;
-      box-shadow: 0 2px 16px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.16);
+      box-shadow: 0 2px 16px 0 rgba(34,158,217,0.16); /* blue */
       padding: 32px 24px;
     }
     .about-big-text {
@@ -395,7 +268,7 @@
       text-align: left;
       font-size: 2.2rem;
       color: #fff;
-      text-shadow: 0 2px 8px var(--primary-blue);
+      text-shadow: 0 2px 8px #229ED9;
       font-weight: 700;
       line-height: 1.2;
       max-width: 600px;
@@ -411,18 +284,13 @@
       max-width: 520px;
       width: 100%;
       border-radius: 24px;
-      box-shadow: 0 2px 32px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.20);
+      box-shadow: 0 2px 32px 0 rgba(34,158,217,0.20); /* blue */
       background: #fff;
       padding: 16px;
       object-fit: contain;
       margin-right: 0;
       align-self: center;
       display: block;
-    }
-
-    /* Footer Section */
-    footer {
-        padding-bottom: 20px;
     }
     .bottom-banner {
       display: flex;
@@ -436,15 +304,6 @@
       width: 100%;
       height: auto;
     }
-    footer p {
-        text-align: center;
-        color: rgba(255,255,255,0.7);
-        font-size: 0.9em;
-        margin-top: 20px;
-        text-shadow: 0 1px 4px rgba(0,0,0,0.5);
-    }
-
-    /* Floating Ben (Mouse Follower) */
     #movingBen {
       position: fixed;
       left: 0;
@@ -453,20 +312,18 @@
       z-index: 9999;
       pointer-events: none;
       user-select: none;
-      filter: drop-shadow(0 4px 24px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.45));
+      filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45)); /* blue drop shadow */
       transition: filter 0.2s;
       display: block;
     }
-
-    /* Media Queries for Responsiveness */
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
-      .about-section, .swap-section { max-width: 98vw; }
+      .about-section { max-width: 98vw; }
       .about-flex-row { flex-direction: column; gap: 18px; padding: 18px 8px;}
       .about-flex-img { max-width: 98vw; }
       .about-big-text { max-width: 98vw; font-size: 1.3rem; }
-      .welcome-title, .swap-title { white-space: normal; font-size: 1.7rem; }
+      .welcome-title { white-space: normal; }
       .car-container { margin: 24px 0 24px 0; }
       #benCar { width: 200px; }
     }
@@ -474,13 +331,12 @@
       .banner img { max-width: 220px; }
       .tap-ben { width: 140px; height: 140px; }
       .tap-ben img { width: 110px; height: 110px; }
-      .about-section, .swap-section { font-size: 1rem; padding: 24px 12px; }
+      .about-section { font-size: 1rem; padding: 18px 6px; }
       .bottom-banner img { max-width: 220px; }
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
-      .welcome-title, .swap-title { font-size: 1.5rem; }
+      .welcome-title { font-size: 1.2rem; }
       .welcome-message .bendog { font-size: 1.3rem; }
       .about-big-text { font-size: 1.1rem; }
-      .swap-button { padding: 14px 20px; font-size: 1.1rem; }
       #benCar { width: 120px; }
       #movingBen { width: 80px; }
       #carEmote { font-size: 1.5rem; top: -28px; }
@@ -488,104 +344,70 @@
   </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
-
-  <header>
-    <div class="banner">
-      <img src="banner.png" alt="BENDOG Logo Banner">
-    </div>
-    <div class="socials">
-      <a href="https://t.me/Bendogscto" target="_blank" title="Telegram">
-        <svg viewBox="0 0 240 240" fill="none" role="img" aria-label="Telegram logo"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
-      </a>
-      <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
-        <svg viewBox="0 0 1200 1227" fill="none" role="img" aria-label="X (Twitter) logo"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
-      </a>
-      <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
-        <img src="Ave.ai.png" alt="Ave.ai logo">
-      </a>
-      <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
-        <img src="Dyorswap.png" alt="Dyorswap logo">
-      </a>
-      <a href="https://web3.okx.com/pt-pt/token/x-layer/0xda1408d7599d74fe92458c97a8a4e90359d886b2" target="_blank" title="OKX">
-        <img src="okxlogo.png" alt="OKX logo">
-      </a>
-    </div>
-  </header>
-
-  <main id="main-content">
-    <div class="main-content">
-      <div class="center-content">
-        <div class="tap-ben" id="tapBen">
-          <span class="woof" id="woofText">WOOF!</span>
-          <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
-        </div>
-        <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px var(--primary-blue);">
-          Tap Ben for a WOOF!
-        </div>
-        <div class="ca-section">
-          CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2
-        </div>
+  <div class="banner">
+    <img src="banner.png" alt="BENDOG Logo Banner">
+  </div>
+  <div class="socials">
+    <a href="https://t.me/Bendogscto" target="_blank" title="Telegram">
+      <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
+    </a>
+    <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
+      <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
+    </a>
+    <!-- Ave.ai and Dyorswap now use image logos -->
+    <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
+      <img src="Ave.ai.png" alt="Ave.ai logo">
+    </a>
+    <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
+      <img src="Dyorswap.png" alt="Dyorswap logo">
+    </a>
+    <a href="https://web3.okx.com/pt-pt/token/x-layer/0xda1408d7599d74fe92458c97a8a4e90359d886b2" target="_blank" title="OKX">
+    <img src="okxlogo.png" alt="OKX logo">
+  </a>
+  </div>
+  <div class="main-content">
+    <div class="center-content">
+      <div class="tap-ben" id="tapBen">
+        <span class="woof" id="woofText">WOOF!</span>
+        <img src="muscleben.png" alt="Tap Ben the Dog" id="benImage">
+      </div>
+      <div style="font-size:1.2rem;color:#fff;text-shadow:0 2px 8px #229ED9;">
+        Tap Ben for a WOOF!
+      </div>
+      <div class="ca-section">
+        CA: 0xdA1408D7599d74fe92458C97A8A4e90359d886b2
       </div>
     </div>
-
-    <!-- ===== NEW & IMPROVED SWAP SECTION ===== -->
-    <section class="swap-section" id="swap">
-      <h2 class="swap-title">Get Your XBENDOG</h2>
-      <div class="swap-container">
-        <a href="https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" class="swap-button">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20 8L17 5M17 5L14 8M17 5V13M4 16L7 19M7 19L10 16M7 19V11"/>
-          </svg>
-          Swap on Dyorswap
-        </a>
-        <div class="swap-info">
-          <p>Click the button to open Dyorswap with XBENDOG pre-selected. Connect your wallet on the X Layer network to swap!</p>
-          <strong>For Mobile Users:</strong>
-          <div class="qr-code-wrapper">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://dyorswap.org/launchinfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" alt="QR Code for Dyorswap XBENDOG page">
-          </div>
-        </div>
+  </div>
+  <div class="about-section">
+    <div class="welcome-message">
+      <span class="welcome-title">Welcome to Bendog Crypto!</span>
+      <div class="bendog">XBENDOG</div>
+      <div>
+        Tap Ben The Dog and Join our Growing Community.
       </div>
-    </section>
-    <!-- ===== END OF SWAP SECTION ===== -->
-
-    <section class="about-section">
-      <div class="welcome-message">
-        <span class="welcome-title">Welcome to Bendog Crypto!</span>
-        <div class="bendog">XBENDOG</div>
-        <div>
-          Tap Ben The Dog and Join our Growing Community.
-        </div>
-      </div>
-      <div class="car-container">
-        <span id="carEmote">🚗💨</span>
-        <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
-        <audio id="carMusic" src="rolling.mp3" preload="auto"></audio>
-      </div>
-      <div style="height:40px;"></div>
-      <div class="about-flex-row">
-        <div class="about-big-text">
-          The most fun and community-driven meme coin on the blockchain.<br>
-          Tap Ben, collect coins, and join our growing community.
-        </div>
-        <img src="teamben.png" alt="BENDOG Team" class="about-flex-img">
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="bottom-banner">
-      <img src="banner.png" alt="BENDOG Logo Banner">
     </div>
-    <p>&copy; 2025 XBENDOG Crypto. All rights reserved.</p>
-  </footer>
-
-  <!-- Hidden elements for JavaScript functionality -->
-  <img src="logo-coin.png" id="coinTemplate" style="display:none;" alt="BENDOG Coin">
-  <audio id="woofSound" src="woof.mp3" preload="auto"></audio>
-  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog character following cursor">
-
+    <div class="car-container">
+      <span id="carEmote">🚗💨</span>
+      <img src="bugatiben-removebg.png" id="benCar" alt="Ben the Dog in Car">
+      <audio id="carMusic" src="rolling.mp3"></audio>
+    </div>
+    <div style="height:40px;"></div>
+    <div class="about-flex-row">
+      <div class="about-big-text">
+        The most fun and community-driven meme coin on the blockchain.<br>
+        Tap Ben, collect coins, and join our growing community.
+      </div>
+      <img src="teamben.png" alt="BENDOG Team" class="about-flex-img">
+    </div>
+  </div>
+  <div class="bottom-banner">
+    <img src="banner.png" alt="BENDOG Logo Banner">
+  </div>
+  <img src="logo-coin.png" id="coinTemplate" style="display:none;">
+  <audio id="woofSound" src="woof.mp3"></audio>
+  <!-- Mouse-following Ben image -->
+  <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog" style="position:fixed; left:0; top:0; width:140px; z-index:9999; pointer-events:none; user-select:none; filter: drop-shadow(0 4px 24px rgba(34,158,217,0.45));">
   <script>
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
@@ -593,123 +415,88 @@
     const woofSound = document.getElementById('woofSound');
     const coinTemplate = document.getElementById('coinTemplate');
 
-    if (tapBen) {
-      tapBen.addEventListener('click', function(e) {
-        woofText.classList.remove('show');
-        void woofText.offsetWidth;
-        woofText.classList.add('show');
-        if (woofSound) {
-          woofSound.currentTime = 0;
-          woofSound.play().catch(e => console.error("Error playing woof sound:", e));
-        }
-
-        if (coinTemplate) {
-          const coin = coinTemplate.cloneNode(true);
-          coin.style.display = 'block';
-          coin.className = 'floating-coin';
-          const tapRect = tapBen.getBoundingClientRect();
-          const startX = tapRect.left + tapRect.width / 2 + (Math.random() - 0.5) * 60;
-          const startY = tapRect.top + tapRect.height / 2 + window.scrollY;
-          coin.style.left = `${startX}px`;
-          coin.style.top = `${startY}px`;
-          document.body.appendChild(coin);
-          setTimeout(() => {
-            coin.remove();
-          }, 2200);
-        }
-      });
-    }
+    tapBen.addEventListener('click', function(e) {
+      woofText.classList.remove('show');
+      void woofText.offsetWidth; // restart animation
+      woofText.classList.add('show');
+      woofSound.currentTime = 0;
+      woofSound.play();
+      const coin = coinTemplate.cloneNode(true);
+      coin.style.display = 'block';
+      coin.className = 'floating-coin';
+      const startX = tapBen.getBoundingClientRect().left + tapBen.offsetWidth/2 + (Math.random()-0.5)*60;
+      coin.style.left = `${startX}px`;
+      const startY = tapBen.getBoundingClientRect().top + tapBen.offsetHeight/2 + window.scrollY;
+      coin.style.top = `${startY}px`;
+      document.body.appendChild(coin);
+      setTimeout(() => {
+        coin.remove();
+      }, 2200);
+    });
 
     // Car bounce (ping-pong) with music and emote
     const benCar = document.getElementById('benCar');
     const carMusic = document.getElementById('carMusic');
     const carEmote = document.getElementById('carEmote');
     let x = 0, speed = 4, direction = 1, running = false;
-    let carAnimationId;
 
-    if (carMusic) {
-      carMusic.onerror = function() {
-        console.warn("rolling.mp3 failed to load. Attempting fallback.");
-        carMusic.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
-        carMusic.load();
-        carMusic.play().catch(e => console.error("Fallback audio also failed to play:", e));
-      };
-    }
+    // Fallback audio if rolling.mp3 is missing
+    carMusic.onerror = function() {
+      carMusic.src = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3";
+      carMusic.load();
+    };
 
     function animateCar() {
       x += speed * direction;
-      const viewportWidth = window.innerWidth;
-      const carWidth = benCar.offsetWidth;
+      benCar.style.transform = `translateX(${x}px) scaleX(${direction})`;
+      carEmote.style.transform = `translateX(${x + benCar.offsetWidth/2}px) translateY(-40px) scaleX(${direction})`;
+      if (x > window.innerWidth - benCar.offsetWidth) direction = -1;
+      if (x < 0) direction = 1;
+      if (running) requestAnimationFrame(animateCar);
+    }
 
-      if (x + carWidth > viewportWidth) {
-        x = viewportWidth - carWidth;
-        direction = -1;
-      }
-      if (x < 0) {
+    benCar.addEventListener('click', function() {
+      carMusic.currentTime = 0;
+      carMusic.play().then(() => {
+        // Music started!
+      }).catch(function(e){
+        alert("Audio could not be played. File missing or not supported.");
+      });
+      if (!running) {
+        running = true;
         x = 0;
         direction = 1;
+        carEmote.classList.add('show');
+        animateCar();
       }
+    });
 
-      benCar.style.transform = `translateX(${x}px) scaleX(${direction === 1 ? 1 : -1})`;
-      carEmote.style.left = `${x + carWidth / 2}px`;
-      carEmote.style.transform = `translateX(-50%) translateY(-40px) scaleX(${direction === 1 ? 1 : -1})`;
-
-      if (running) {
-        carAnimationId = requestAnimationFrame(animateCar);
-      }
-    }
-
-    if (benCar) {
-      benCar.addEventListener('click', function() {
-        if (carMusic) {
-          carMusic.currentTime = 0;
-          carMusic.play().then(() => {
-            if (!running) {
-              running = true;
-              x = 0;
-              direction = 1;
-              carEmote.classList.add('show');
-              animateCar();
-            }
-          }).catch(function(e) {
-            console.error("Audio could not be played:", e);
-            alert("Audio could not be played. File missing or browser restrictions.");
-          });
-        } else {
-          console.error("Car music element not found.");
-        }
-      });
-    }
-
-    if (carMusic) {
-      carMusic.addEventListener('ended', function() {
-        running = false;
-        if (carAnimationId) cancelAnimationFrame(carAnimationId);
-        if (benCar) benCar.style.transform = 'translateX(0) scaleX(1)';
-        if (carEmote) carEmote.classList.remove('show');
-      });
-    }
+    carMusic.addEventListener('ended', function() {
+      running = false;
+      benCar.style.transform = 'translateX(0) scaleX(1)';
+      carEmote.classList.remove('show');
+    });
 
     // Mouse-following Ben
     const ben = document.getElementById('movingBen');
-    if (ben) {
-      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
-      let benX = mouseX, benY = mouseY;
+    let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+    let benX = mouseX, benY = mouseY;
 
-      document.addEventListener('mousemove', function(e) {
-        mouseX = e.clientX - ben.offsetWidth / 2;
-        mouseY = e.clientY - ben.offsetHeight / 2;
-      });
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX - ben.offsetWidth / 2;
+      mouseY = e.clientY - ben.offsetHeight / 2;
+    });
 
-      function animateBen() {
-        benX += (mouseX - benX) * 0.15;
-        benY += (mouseY - benY) * 0.15;
-        ben.style.left = benX + 'px';
-        ben.style.top = benY + 'px';
-        requestAnimationFrame(animateBen);
-      }
-      animateBen();
+    function animateBen() {
+      benX += (mouseX - benX) * 0.15;
+      benY += (mouseY - benY) * 0.15;
+      ben.style.left = benX + 'px';
+      ben.style.top = benY + 'px';
+      requestAnimationFrame(animateBen);
     }
+    animateBen();
   </script>
 </body>
 </html>
+
+
