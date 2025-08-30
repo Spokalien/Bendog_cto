@@ -8,6 +8,7 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet">
   <style>
+    /* CSS Variables for easy color changes */
     :root {
       --primary-blue: #229ED9;
       --primary-blue-r: 34;
@@ -16,6 +17,7 @@
       --text-glow-shadow: 0 2px 8px var(--primary-blue), 0 0 2px #000;
     }
 
+    /* Skip Link for Accessibility */
     .skip-link {
         position: absolute;
         left: -9999px;
@@ -38,6 +40,7 @@
         text-align: center;
     }
 
+    /* Base Styles */
     html, body {
       height: 100%;
       margin: 0;
@@ -56,6 +59,7 @@
       100% { background-position: 50% 0%; }
     }
 
+    /* Header Section */
     .banner {
       display: flex;
       align-items: center;
@@ -98,6 +102,7 @@
       display: block;
     }
 
+    /* Main Content - Tap Ben Section */
     .main-content {
       display: flex;
       align-items: center;
@@ -196,90 +201,61 @@
       user-select: all;
     }
 
-    /* Swap Section Styles */
+    /* DYOR.FUN SWAP SECTION — OKB TO XBENDOG */
     .swap-section {
-      margin: 60px auto 0 auto;
-      max-width: 1200px;
-      background: rgba(255,255,255,0.18);
-      border-radius: 24px;
-      box-shadow: 0 2px 16px 0 rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.24);
-      padding: 32px 24px;
-      color: #fff;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .swap-title {
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 24px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(var(--primary-blue-r),var(--primary-blue-g),var(--primary-blue-b),0.2);
+      text-align: center;
       color: #fff;
       text-shadow: var(--text-glow-shadow);
-      font-family: 'Montserrat', Arial, sans-serif;
-      text-align: center;
+    }
+    .swap-section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      font-weight: 900;
     }
     .swap-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      width: 100%;
-      max-width: 500px;
+      position: relative;
+      min-height: 550px;
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .swap-button {
-      background: linear-gradient(135deg, #229ED9, #1a7bb3);
-      color: white;
-      padding: 16px 32px;
+    .swap-container iframe {
+      width: 100%;
+      height: 550px;
       border: none;
-      border-radius: 12px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 16px rgba(34,158,217,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
     }
-    .swap-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(34,158,217,0.6);
-    }
-    .swap-button:active {
-      transform: translateY(0);
-    }
-    .swap-info {
+    .swap-fallback {
+      display: none;
+      padding: 20px;
       background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      padding: 16px;
-      font-size: 0.9rem;
-      text-align: center;
+      border-radius: 8px;
       margin-top: 10px;
     }
-    .qr-code {
-      background: white;
-      padding: 12px;
-      border-radius: 12px;
-      margin-top: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-    .qr-code img {
-      width: 150px;
-      height: 150px;
+    .swap-fallback.show {
       display: block;
     }
-    .mobile-swap {
-      display: none;
-      text-align: center;
-      margin-top: 20px;
+    .swap-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--primary-blue);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    .swap-btn:hover {
+      background: #1a73e8;
     }
 
+    /* About Section */
     .about-section {
       margin: 40px auto 0 auto;
       max-width: 1200px;
@@ -409,6 +385,7 @@
       display: block;
     }
 
+    /* Footer Section */
     .bottom-banner {
       display: flex;
       align-items: center;
@@ -430,6 +407,7 @@
         text-shadow: 0 1px 4px rgba(0,0,0,0.5);
     }
 
+    /* Floating Ben (Mouse Follower) */
     #movingBen {
       position: fixed;
       left: 0;
@@ -443,23 +421,25 @@
       display: block;
     }
 
+    /* Media Queries for Responsiveness */
     @media (max-width: 900px) {
       .main-content { flex-direction: column; }
       .center-content { margin: 24px 0; }
-      .about-section, .swap-section { max-width: 98vw; }
+      .about-section { max-width: 98vw; }
       .about-flex-row { flex-direction: column; gap: 18px; padding: 18px 8px;}
       .about-flex-img { max-width: 98vw; }
       .about-big-text { max-width: 98vw; font-size: 1.3rem; }
       .welcome-title { white-space: normal; }
       .car-container { margin: 24px 0 24px 0; }
       #benCar { width: 200px; }
-      .swap-title { font-size: 1.7rem; }
+      .swap-section { max-width: 95vw; padding: 16px; }
+      .swap-container iframe { height: 450px; }
     }
     @media (max-width: 600px) {
       .banner img { max-width: 220px; }
       .tap-ben { width: 140px; height: 140px; }
       .tap-ben img { width: 110px; height: 110px; }
-      .about-section, .swap-section { font-size: 1rem; padding: 18px 6px; }
+      .about-section { font-size: 1rem; padding: 18px 6px; }
       .bottom-banner img { max-width: 220px; }
       .ca-section { font-size: 0.9rem; padding: 6px 8px;}
       .welcome-title { font-size: 1.2rem; }
@@ -468,9 +448,9 @@
       #benCar { width: 120px; }
       #movingBen { width: 80px; }
       #carEmote { font-size: 1.5rem; top: -28px; }
-      .swap-title { font-size: 1.5rem; }
-      .swap-button { padding: 14px 20px; font-size: 1.1rem; }
-      .mobile-swap { display: block; }
+      .swap-section h2 { font-size: 1.4rem; }
+      .swap-container { min-height: 400px; }
+      .swap-container iframe { height: 400px; }
     }
   </style>
 </head>
@@ -483,16 +463,16 @@
     </div>
     <div class="socials">
       <a href="https://t.me/Bendogscto" target="_blank" title="Telegram">
-        <svg viewBox="0 0 240 240" fill="none" role="img" aria-label="Telegram logo"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
+        <svg viewBox="0 0 240 240" fill="none"><circle cx="120" cy="120" r="120" fill="#229ED9"/><path d="M180.5 67.5L157.5 172.5C155.5 180.5 150.5 182.5 143.5 178.5L110.5 154.5L94.5 170.5C92.5 172.5 90.5 174.5 87.5 174.5L90.5 139.5L157.5 80.5C160.5 78 157.5 77 154.5 79.5L76.5 132.5L42.5 121.5C35.5 119.5 35.5 114.5 44.5 111.5L171.5 66.5C177.5 64.5 182.5 68.5 180.5 67.5Z" fill="#fff"/></svg>
       </a>
       <a href="https://x.com/Bendogcto" target="_blank" title="X (Twitter)">
-        <svg viewBox="0 0 1200 1227" fill="none" role="img" aria-label="X (Twitter) logo"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
+        <svg viewBox="0 0 1200 1227" fill="none"><rect width="1200" height="1227" rx="240" fill="#000"/><path d="M327 327h146l201 273 201-273h146L774 627l247 273h-146l-174-192-174 192H327l247-273-247-273zm146 273l127 140 127-140-127-140-127 140z" fill="#fff"/></svg>
       </a>
       <a href="https://ave.ai/token/0xda1408d7599d74fe92458c97a8a4e90359d886b2-xlayer?from=Home" target="_blank" title="Ave.ai">
         <img src="Ave.ai.png" alt="Ave.ai logo">
       </a>
-      <a href="https://dyorswap.org/launchInfo/?id=0xdA1408D7599d74fe92458C97A8A4e90359d886b2&chainId=196" target="_blank" title="Dyorswap">
-        <img src="Dyorswap.png" alt="Dyorswap logo">
+      <a href="https://dyor.fun/swap?input=okb&output=0xda1408d7599d74fe92458c97a8a4e90359d886b2&chainId=196" target="_blank" title="Dyor.fun">
+        <img src="Dyorswap.png" alt="Dyor.fun logo">
       </a>
       <a href="https://web3.okx.com/pt-pt/token/x-layer/0xda1408d7599d74fe92458c97a8a4e90359d886b2" target="_blank" title="OKX">
         <img src="okxlogo.png" alt="OKX logo">
@@ -516,28 +496,25 @@
       </div>
     </div>
 
-    <!-- New Swap Section -->
-    <section class="swap-section">
-      <h2 class="swap-title">Swap Directly to XBENDOG</h2>
+    <!-- ✅ NEW: DYOR.FUN SWAP — OKB → XBENDOG -->
+    <section class="swap-section" aria-label="Swap OKB to XBENDOG on Dyor.fun">
+      <h2>🚀 Swap OKB → XBENDOG</h2>
+      <p>Use Dyor.fun’s fun interface to swap OKB for XBENDOG instantly. Connect your wallet and go!</p>
       <div class="swap-container">
-        <button class="swap-button" id="dyorswap-button">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 8L17 5M17 5L14 8M17 5V13M4 16L7 19M7 19L10 16M7 19V11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          Swap on Dyorswap
-        </button>
-        
-        <div class="swap-info">
-          <p>Connect your wallet and swap directly to XBENDOG on Dyorswap</p>
-          <div class="qr-code">
-            <!-- Generate a QR code for the Dyorswap URL -->
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://dyorswap.org/swap?token=0xdA1408D7599d74fe92458C97A8A4e90359d886b2" alt="Dyorswap QR Code">
-          </div>
-        </div>
-        
-        <div class="mobile-swap">
-          <p>On mobile? Scan the QR code or visit:<br>
-          <strong>dyorswap.org/swap</strong></p>
+        <iframe 
+          src="https://dyor.fun/swap?input=okb&output=0xda1408d7599d74fe92458c97a8a4e90359d886b2&chainId=196" 
+          title="Dyor.fun Swap: OKB to XBENDOG"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+        <div class="swap-fallback" id="swapFallback">
+          <p>If the swap doesn't load, click below to open directly on Dyor.fun.</p>
+          <a href="https://dyor.fun/swap?input=okb&output=0xda1408d7599d74fe92458c97a8a4e90359d886b2&chainId=196" 
+             class="swap-btn" 
+             target="_blank" 
+             rel="noopener noreferrer">
+            Open Swap on Dyor.fun →
+          </a>
         </div>
       </div>
     </section>
@@ -573,11 +550,14 @@
     <p>&copy; 2025 XBENDOG Crypto. All rights reserved.</p>
   </footer>
 
+  <!-- Hidden elements -->
   <img src="logo-coin.png" id="coinTemplate" style="display:none;" alt="BENDOG Coin">
   <audio id="woofSound" src="woof.mp3" preload="auto"></audio>
   <img src="moonben-removebg.png" id="movingBen" alt="Ben the Dog character following cursor">
 
   <script defer>
+    // Existing Tap Ben, Car, Mouse Follow Scripts...
+
     // Tap Ben for WOOF and floating coin
     const tapBen = document.getElementById('tapBen');
     const woofText = document.getElementById('woofText');
@@ -664,7 +644,7 @@
             }
           }).catch(function(e) {
             console.error("Audio could not be played:", e);
-            alert("Audio could not be played. File missing or browser restrictions (e.g., autoplay blocked).");
+            alert("Audio could not be played. File missing or browser restrictions.");
           });
         } else {
           console.error("Car music element not found.");
@@ -702,13 +682,32 @@
       animateBen();
     }
 
-    // Dyorswap Button Functionality
-    const dyorswapButton = document.getElementById('dyorswap-button');
-    if (dyorswapButton) {
-      dyorswapButton.addEventListener('click', function() {
-        window.open('https://dyorswap.org/swap?token=0xdA1408D7599d74fe92458C97A8A4e90359d886b2', '_blank');
-      });
-    }
+    // ✅ NEW: Handle Dyor.fun iframe loading
+    document.addEventListener('DOMContentLoaded', () => {
+      const iframe = document.querySelector('.swap-container iframe');
+      const fallback = document.getElementById('swapFallback');
+
+      if (iframe && fallback) {
+        const iframeTimeout = setTimeout(() => {
+          iframe.style.display = 'none';
+          fallback.classList.add('show');
+          console.warn('Dyor.fun iframe failed to load; showing fallback.');
+        }, 5000);
+
+        iframe.onload = () => {
+          clearTimeout(iframeTimeout);
+          iframe.style.display = 'block';
+          fallback.classList.remove('show');
+        };
+
+        iframe.onerror = () => {
+          clearTimeout(iframeTimeout);
+          iframe.style.display = 'none';
+          fallback.classList.add('show');
+          console.error('Dyor.fun iframe error; showing fallback.');
+        };
+      }
+    });
   </script>
 </body>
 </html>
